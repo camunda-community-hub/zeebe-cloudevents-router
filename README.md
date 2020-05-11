@@ -27,6 +27,9 @@ The worker expose HTTP Endpoints to recieve Cloud Events that can be propagated 
 - /message POST -> Receive a Cloud Event that will be forwarded as a BPMN Message for an Intermediate Catch Event 
 
 
+You can always access the Open API UI here: http://localhost:8080/swagger-ui.html
+
+
 # Examples
 
 ## EMIT and WAIT

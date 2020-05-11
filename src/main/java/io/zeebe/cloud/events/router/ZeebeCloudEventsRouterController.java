@@ -30,6 +30,12 @@ public class ZeebeCloudEventsRouterController {
     @Autowired
     private JobClient jobClient;
 
+    @GetMapping("/status")
+    public void getStatus(){
+        log.info("> Broker Contact Point: " + zeebeClient.getConfiguration().getBrokerContactPoint());
+        log.info("> Plain Text Connection Enabled: " + zeebeClient.getConfiguration().isPlaintextConnectionEnabled());
+    }
+
     @GetMapping("/jobs")
     public String printPendingJobs() {
         Map<String, Map<String, Set<String>>> jobs = mappingsService.getAllPendingJobs();
