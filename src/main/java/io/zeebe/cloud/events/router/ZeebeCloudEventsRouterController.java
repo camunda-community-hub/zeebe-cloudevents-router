@@ -31,9 +31,11 @@ public class ZeebeCloudEventsRouterController {
     private JobClient jobClient;
 
     @GetMapping("/status")
-    public void getStatus(){
+    public String getStatus(){
         log.info("> Broker Contact Point: " + zeebeClient.getConfiguration().getBrokerContactPoint());
         log.info("> Plain Text Connection Enabled: " + zeebeClient.getConfiguration().isPlaintextConnectionEnabled());
+        return "{ \"zeebe.broker.contactPoint\": " + zeebeClient.getConfiguration().getBrokerContactPoint() + ", " +
+                "\"plainTextConnection\":" + zeebeClient.getConfiguration().isPlaintextConnectionEnabled() + "}";
     }
 
     @GetMapping("/jobs")
@@ -94,21 +96,21 @@ public class ZeebeCloudEventsRouterController {
 
     @PostMapping("/workflows")
     public void addStartWorkflowCloudEventMapping(@RequestBody WorkflowByCloudEvent wbce){
-        mappingsService.registerStartWorkflowByCloudEvent(wbce.getCloudEventType(), Long.valueOf(wbce.getWorkflowKey()));
+        mappingsService.registerStartWorkflowByCloudEvent(wbce.getCloudEventType(), wbce.getBPMNProcessId());
     }
 
     @GetMapping("/workflows")
-    public Map<String, Long> getStartWorkflowCloudEventMapping(){
+    public Map<String, String> getStartWorkflowCloudEventMapping(){
         return mappingsService.getStartWorkflowByCloudEvents();
     }
 
     @PostMapping("/workflow")
     public void startWorkflow(@RequestHeader Map<String, String> headers, @RequestBody Map<String, String> body) {
         CloudEvent<AttributesImpl, String> cloudEvent = CloudEventsHelper.parseFromRequest(headers, body);
-        Long workflowKey = mappingsService.getStartWorkflowByCloudEvent(cloudEvent.getAttributes().getType());
-        if(workflowKey != null) {
+        String bpmnProcessId = mappingsService.getStartWorkflowByCloudEvent(cloudEvent.getAttributes().getType());
+        if(bpmnProcessId != null) {
             //@TODO: deal with empty body for variables
-            zeebeClient.newCreateInstanceCommand().workflowKey(workflowKey).variables(body).send().join();
+            zeebeClient.newCreateInstanceCommand().bpmnProcessId(bpmnProcessId).latestVersion().variables(body).send().join();
         }
     }
 

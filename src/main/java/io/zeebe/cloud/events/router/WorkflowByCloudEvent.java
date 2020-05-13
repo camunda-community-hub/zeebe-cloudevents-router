@@ -6,14 +6,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WorkflowByCloudEvent {
     private String cloudEventType;
-    private String workflowKey;
+    private String bpmnProcessId;
 
     public WorkflowByCloudEvent() {
     }
 
-    public WorkflowByCloudEvent(String cloudEventType, String workflowKey) {
+    public WorkflowByCloudEvent(String cloudEventType, String bpmnProcessId) {
         this.cloudEventType = cloudEventType;
-        this.workflowKey = workflowKey;
+        this.bpmnProcessId = bpmnProcessId;
     }
 
     public String getCloudEventType() {
@@ -24,11 +24,11 @@ public class WorkflowByCloudEvent {
         this.cloudEventType = cloudEventType;
     }
 
-    public String getWorkflowKey() {
-        return workflowKey;
+    public String getBPMNProcessId() {
+        return bpmnProcessId;
     }
 
-    public void setWorkflowKey(String workflowKey) {
-        this.workflowKey = workflowKey;
+    public void setWorkflowKey(String bpmnProcessId) {
+        this.bpmnProcessId = bpmnProcessId;
     }
 }

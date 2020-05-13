@@ -15,7 +15,7 @@ public class CloudEventsZeebeMappingsService {
 
     private Map<String, Set<String>> messagesByWorkflowKey = new HashMap<>();
 
-    private Map<String, Long> startWorkflows = new HashMap<>();
+    private Map<String, String> startWorkflows = new HashMap<>();
 
     public CloudEventsZeebeMappingsService() {
 
@@ -69,15 +69,15 @@ public class CloudEventsZeebeMappingsService {
         return messagesByWorkflowKey.get(workflowKey);
     }
 
-    public void registerStartWorkflowByCloudEvent(String cloudEventType, Long workflowKey) {
-        startWorkflows.put(cloudEventType, workflowKey);
+    public void registerStartWorkflowByCloudEvent(String cloudEventType, String bpmnProcessId) {
+        startWorkflows.put(cloudEventType, bpmnProcessId);
     }
 
-    public Long getStartWorkflowByCloudEvent(String cloudEventType) {
+    public String getStartWorkflowByCloudEvent(String cloudEventType) {
         return startWorkflows.get(cloudEventType);
     }
 
-    public Map<String, Long> getStartWorkflowByCloudEvents() {
+    public Map<String, String> getStartWorkflowByCloudEvents() {
         return startWorkflows;
     }
 
