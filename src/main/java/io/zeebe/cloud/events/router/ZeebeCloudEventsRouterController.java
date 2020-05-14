@@ -96,22 +96,39 @@ public class ZeebeCloudEventsRouterController {
 
     @PostMapping("/workflows")
     public void addStartWorkflowCloudEventMapping(@RequestBody WorkflowByCloudEvent wbce){
-        mappingsService.registerStartWorkflowByCloudEvent(wbce.getCloudEventType(), wbce.getBPMNProcessId());
+        mappingsService.registerStartWorkflowByCloudEvent(wbce);
     }
 
     @GetMapping("/workflows")
-    public Map<String, String> getStartWorkflowCloudEventMapping(){
+    public Map<String, WorkflowByCloudEvent> getStartWorkflowCloudEventMapping(){
         return mappingsService.getStartWorkflowByCloudEvents();
     }
 
     @PostMapping("/workflow")
     public void startWorkflow(@RequestHeader Map<String, String> headers, @RequestBody Map<String, String> body) {
         CloudEvent<AttributesImpl, String> cloudEvent = CloudEventsHelper.parseFromRequest(headers, body);
-        String bpmnProcessId = mappingsService.getStartWorkflowByCloudEvent(cloudEvent.getAttributes().getType());
-        if(bpmnProcessId != null) {
+        WorkflowByCloudEvent workflowByCloudEvent = mappingsService.getStartWorkflowByCloudEvent(cloudEvent.getAttributes().getType());
+        if(workflowByCloudEvent.getBpmnProcessId() != null && !workflowByCloudEvent.getBpmnProcessId().equals("")) {
             //@TODO: deal with empty body for variables
-            zeebeClient.newCreateInstanceCommand().bpmnProcessId(bpmnProcessId).latestVersion().variables(body).send().join();
+            if(workflowByCloudEvent.getVersion() == null || workflowByCloudEvent.getVersion().equals("")){
+                zeebeClient.newCreateInstanceCommand().bpmnProcessId(workflowByCloudEvent.getBpmnProcessId())
+                        .latestVersion().variables(body)
+                        .send()
+                        .join();
+            }else{
+                zeebeClient.newCreateInstanceCommand().bpmnProcessId(workflowByCloudEvent.getBpmnProcessId())
+                        .version(Integer.valueOf(workflowByCloudEvent.getVersion()))
+                        .variables(body)
+                        .send()
+                        .join();
+            }
+        }else if (workflowByCloudEvent.getWorkflowKey() != null && !workflowByCloudEvent.getWorkflowKey().equals("")){
+            zeebeClient.newCreateInstanceCommand().workflowKey(Long.valueOf(workflowByCloudEvent.getWorkflowKey()))
+                    .variables(body)
+                    .send()
+                    .join();
         }
+        log.error("No workflow was started with: " + workflowByCloudEvent.toString());
     }
 
     @PostMapping("/messages")
