@@ -1,5 +1,6 @@
 package io.zeebe.cloud.events.router;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.zeebe.client.api.response.ActivatedJob;
 import io.zeebe.client.api.worker.JobClient;
 import io.zeebe.cloudevents.Headers;
@@ -24,7 +25,7 @@ public class ZeebeCloudEventsRouterWorker {
     private JobClient jobClient;
 
     @ZeebeWorker(name = "cloudevents-router", type = "cloudevents", timeout = 60 * 60 * 24 * 1000)
-    public void cloudEventsRouterWorker(final JobClient client, final ActivatedJob job) {
+    public void cloudEventsRouterWorker(final JobClient client, final ActivatedJob job) throws JsonProcessingException {
         logJob(job);
         //from headers
         //@TODO: deal with empty headers for HOST and MODE
