@@ -1,0 +1,65 @@
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-bthks-5[0m stage [32mfrom-build-pack[0m and container [32mcredential-initializer[0m
+{"level":"info","ts":1597091752.1621828,"caller":"creds-init/main.go:44","msg":"Credentials initialized."}
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-bthks-5[0m stage [32mfrom-build-pack[0m and container [32mworking-dir-initializer[0m
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-bthks-5[0m stage [32mfrom-build-pack[0m and container [32mplace-tools[0m
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-bthks-5[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-zeebe-io-zeebe-cloud-events-rou-bthks-ms2gz[0m
+{"level":"info","ts":1597091760.942517,"caller":"git/git.go:105","msg":"Successfully cloned https://github.com/zeebe-io/zeebe-cloud-events-router.git @ v0.0.11 in path /workspace/source"}
+{"level":"warn","ts":1597091760.9447405,"caller":"git/git.go:152","msg":"Unexpected error: creating symlink: symlink /tekton/home/.ssh /root/.ssh: file exists"}
+{"level":"info","ts":1597091760.985506,"caller":"git/git.go:133","msg":"Successfully initialized and updated submodules in path /workspace/source"}
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-bthks-5[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-builder-home[0m
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-bthks-5[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:
+WARNING: no SHAs to merge, falling back to initial cloned commit
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-bthks-5[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
+Generated Git credentials file /workspace/xdg_config/git/credentials
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-bthks-5[0m stage [32mfrom-build-pack[0m and container [32mstep-build-mvn-deploy[0m
+Picked up _JAVA_OPTIONS: -XX:+UnlockExperimentalVMOptions -Dsun.zip.disableMemoryMapping=true -XX:+UseParallelGC -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Xms10m -Xmx192m
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------< com.*******.zeebe:zeebe-cloud-events-router >-------------
+[INFO] Building Zeebe Cloud Events Router 0.0.11
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ zeebe-cloud-events-router ---
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ zeebe-cloud-events-router ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ zeebe-cloud-events-router ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 7 source files to /workspace/source/target/classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /workspace/source/src/main/java/io/zeebe/cloud/events/router/ZeebeCloudEventsRouterWorker.java:[44,66] unreported exception com.fasterxml.jackson.core.JsonProcessingException; must be caught or declared to be thrown
+[ERROR] /workspace/source/src/main/java/io/zeebe/cloud/events/router/ZeebeCloudEventsRouterWorker.java:[46,66] unreported exception com.fasterxml.jackson.core.JsonProcessingException; must be caught or declared to be thrown
+[INFO] 2 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  52.538 s
+[INFO] Finished at: 2020-08-10T20:37:00Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile (default-compile) on project zeebe-cloud-events-router: Compilation failure: Compilation failure: 
+[ERROR] /workspace/source/src/main/java/io/zeebe/cloud/events/router/ZeebeCloudEventsRouterWorker.java:[44,66] unreported exception com.fasterxml.jackson.core.JsonProcessingException; must be caught or declared to be thrown
+[ERROR] /workspace/source/src/main/java/io/zeebe/cloud/events/router/ZeebeCloudEventsRouterWorker.java:[46,66] unreported exception com.fasterxml.jackson.core.JsonProcessingException; must be caught or declared to be thrown
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[31m
+Pipeline failed on stage 'from-build-pack' : container 'step-build-mvn-deploy'. The execution of the pipeline has stopped.[0m
