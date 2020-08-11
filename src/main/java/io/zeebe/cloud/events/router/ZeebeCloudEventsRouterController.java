@@ -1,9 +1,13 @@
 package io.zeebe.cloud.events.router;
 
+
+
 import com.salaboy.cloudevents.helper.CloudEventsHelper;
 import io.cloudevents.CloudEvent;
-import io.cloudevents.json.Json;
-import io.cloudevents.v03.AttributesImpl;
+import io.cloudevents.core.format.EventFormat;
+import io.cloudevents.core.provider.EventFormatProvider;
+
+import io.cloudevents.jackson.JsonFormat;
 import io.zeebe.client.api.worker.JobClient;
 import io.zeebe.cloudevents.ZeebeCloudEventExtension;
 import io.zeebe.cloudevents.ZeebeCloudEventsHelper;
@@ -57,12 +61,12 @@ public class ZeebeCloudEventsRouterController {
 
     @PostMapping("/")
     public String receiveCloudEvent(@RequestHeader HttpHeaders headers, @RequestBody Object body) {
-        CloudEvent<AttributesImpl, String> cloudEvent = ZeebeCloudEventsHelper.parseZeebeCloudEventFromRequest(headers, body);
+        CloudEvent cloudEvent = ZeebeCloudEventsHelper.parseZeebeCloudEventFromRequest(headers, body);
 
-        final String json = Json.encode(cloudEvent);
-        log.debug("Cloud Event: " + json);
+        logCloudEvent(cloudEvent);
 
-        ZeebeCloudEventExtension zeebeCloudEventExtension = (ZeebeCloudEventExtension) cloudEvent.getExtensions().get("zeebe");
+
+        ZeebeCloudEventExtension zeebeCloudEventExtension = (ZeebeCloudEventExtension) cloudEvent.getExtension("zeebe");
         if (zeebeCloudEventExtension != null) {
             String workflowKey = zeebeCloudEventExtension.getWorkflowKey();
             String workflowInstanceKey = zeebeCloudEventExtension.getWorkflowInstanceKey();
@@ -73,7 +77,7 @@ public class ZeebeCloudEventsRouterController {
                 if (!pendingJobs.isEmpty()) {
                     if (pendingJobs.contains(jobKey)) {
                         //@TODO: deal with Optionals for Data
-                        jobClient.newCompleteCommand(Long.valueOf(jobKey)).variables(cloudEvent.getData().get()).send().join();
+                        jobClient.newCompleteCommand(Long.valueOf(jobKey)).variables(cloudEvent.getData()).send().join();
                         mappingsService.removePendingJobFromWorkflow(workflowKey, workflowInstanceKey, jobKey);
                     } else {
                         log.error("Job Key: " + jobKey + " not found");
@@ -95,6 +99,13 @@ public class ZeebeCloudEventsRouterController {
         return "OK!";
     }
 
+    private void logCloudEvent(CloudEvent cloudEvent) {
+        EventFormat format = EventFormatProvider
+                .getInstance()
+                .resolveFormat(JsonFormat.CONTENT_TYPE);
+        log.info("Cloud Event: " + format.serialize(cloudEvent));
+    }
+
     @PostMapping("/workflows")
     public void addStartWorkflowCloudEventMapping(@RequestBody WorkflowByCloudEvent wbce) {
         mappingsService.registerStartWorkflowByCloudEvent(wbce);
@@ -107,8 +118,8 @@ public class ZeebeCloudEventsRouterController {
 
     @PostMapping("/workflow")
     public void startWorkflow(@RequestHeader HttpHeaders headers, @RequestBody Map<String, String> body) {
-        CloudEvent<AttributesImpl, String> cloudEvent = CloudEventsHelper.parseFromRequest(headers.toSingleValueMap(), body);
-        WorkflowByCloudEvent workflowByCloudEvent = mappingsService.getStartWorkflowByCloudEvent(cloudEvent.getAttributes().getType());
+        CloudEvent cloudEvent = CloudEventsHelper.parseFromRequest(headers.toSingleValueMap(), body);
+        WorkflowByCloudEvent workflowByCloudEvent = mappingsService.getStartWorkflowByCloudEvent(cloudEvent.getType());
         if (workflowByCloudEvent.getBpmnProcessId() != null && !workflowByCloudEvent.getBpmnProcessId().equals("")) {
             //@TODO: deal with empty body for variables
             if (workflowByCloudEvent.getVersion() == null || workflowByCloudEvent.getVersion().equals("")) {
@@ -142,19 +153,19 @@ public class ZeebeCloudEventsRouterController {
 
     @PostMapping("/message")
     public String receiveCloudEventForMessage(@RequestHeader HttpHeaders headers, @RequestBody Object body) {
-        CloudEvent<AttributesImpl, String> cloudEvent = ZeebeCloudEventsHelper.parseZeebeCloudEventFromRequest(headers, body);
-        final String json = Json.encode(cloudEvent);
-        log.info("Cloud Event: " + json);
+        CloudEvent cloudEvent = ZeebeCloudEventsHelper.parseZeebeCloudEventFromRequest(headers, body);
+
+        logCloudEvent(cloudEvent);
 
         //@TODO: deal with empty type and no correlation key.
-        String cloudEventType = cloudEvent.getAttributes().getType();
-        String correlationKey = ((ZeebeCloudEventExtension) cloudEvent.getExtensions().get("zeebe")).getCorrelationKey();
+        String cloudEventType = cloudEvent.getType();
+        String correlationKey = ((ZeebeCloudEventExtension) cloudEvent.getExtension("zeebe")).getCorrelationKey();
 
         //@TODO: deal with optional for Data, for empty Data
         zeebeClient.newPublishMessageCommand()
                 .messageName(cloudEventType)
                 .correlationKey(correlationKey)
-                .variables(cloudEvent.getData().get())
+                .variables(cloudEvent.getData())
                 .send().join();
 
         // @TODO: decide on return types
