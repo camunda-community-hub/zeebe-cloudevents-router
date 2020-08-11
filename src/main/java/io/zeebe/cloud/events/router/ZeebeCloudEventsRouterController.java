@@ -169,7 +169,7 @@ public class ZeebeCloudEventsRouterController {
         zeebeClient.newPublishMessageCommand()
                 .messageName(cloudEventType)
                 .correlationKey(correlationKey)
-                .variables(objectMapper.writeValueAsString(new String(cloudEvent.getData())))
+                .variables(new String(cloudEvent.getData()))
                 .send().join();
 
         // @TODO: decide on return types
