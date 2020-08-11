@@ -2,6 +2,8 @@ package io.zeebe.cloud.events.router;
 
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.salaboy.cloudevents.helper.CloudEventsHelper;
 import io.cloudevents.CloudEvent;
 import io.cloudevents.core.format.EventFormat;
@@ -152,7 +154,7 @@ public class ZeebeCloudEventsRouterController {
     }
 
     @PostMapping("/message")
-    public String receiveCloudEventForMessage(@RequestHeader HttpHeaders headers, @RequestBody Object body) {
+    public String receiveCloudEventForMessage(@RequestHeader HttpHeaders headers, @RequestBody Object body) throws JsonProcessingException {
         CloudEvent cloudEvent = ZeebeCloudEventsHelper.parseZeebeCloudEventFromRequest(headers, body);
 
         logCloudEvent(cloudEvent);
@@ -160,12 +162,12 @@ public class ZeebeCloudEventsRouterController {
         //@TODO: deal with empty type and no correlation key.
         String cloudEventType = cloudEvent.getType();
         String correlationKey = (String) cloudEvent.getExtension(ZeebeCloudEventExtension.CORRELATION_KEY);
-
+        ObjectMapper objectMapper = new ObjectMapper();
         //@TODO: deal with optional for Data, for empty Data
         zeebeClient.newPublishMessageCommand()
                 .messageName(cloudEventType)
                 .correlationKey(correlationKey)
-                .variables(cloudEvent.getData())
+                .variables(objectMapper.writeValueAsString(cloudEvent.getData()))
                 .send().join();
 
         // @TODO: decide on return types
