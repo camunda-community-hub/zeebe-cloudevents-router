@@ -10,6 +10,7 @@ import io.zeebe.cloudevents.ZeebeCloudEventsHelper;
 import io.zeebe.spring.client.ZeebeClientLifecycle;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -55,7 +56,7 @@ public class ZeebeCloudEventsRouterController {
     }
 
     @PostMapping("/")
-    public String recieveCloudEvent(@RequestHeader Map<String, String> headers, @RequestBody Object body) {
+    public String receiveCloudEvent(@RequestHeader HttpHeaders headers, @RequestBody Object body) {
         CloudEvent<AttributesImpl, String> cloudEvent = ZeebeCloudEventsHelper.parseZeebeCloudEventFromRequest(headers, body);
 
         final String json = Json.encode(cloudEvent);
@@ -105,8 +106,8 @@ public class ZeebeCloudEventsRouterController {
     }
 
     @PostMapping("/workflow")
-    public void startWorkflow(@RequestHeader Map<String, String> headers, @RequestBody Map<String, String> body) {
-        CloudEvent<AttributesImpl, String> cloudEvent = CloudEventsHelper.parseFromRequest(headers, body);
+    public void startWorkflow(@RequestHeader HttpHeaders headers, @RequestBody Map<String, String> body) {
+        CloudEvent<AttributesImpl, String> cloudEvent = CloudEventsHelper.parseFromRequest(headers.toSingleValueMap(), body);
         WorkflowByCloudEvent workflowByCloudEvent = mappingsService.getStartWorkflowByCloudEvent(cloudEvent.getAttributes().getType());
         if (workflowByCloudEvent.getBpmnProcessId() != null && !workflowByCloudEvent.getBpmnProcessId().equals("")) {
             //@TODO: deal with empty body for variables
@@ -140,7 +141,7 @@ public class ZeebeCloudEventsRouterController {
     }
 
     @PostMapping("/message")
-    public String recieveCloudEventForMessage(@RequestHeader Map<String, String> headers, @RequestBody Object body) {
+    public String receiveCloudEventForMessage(@RequestHeader HttpHeaders headers, @RequestBody Object body) {
         CloudEvent<AttributesImpl, String> cloudEvent = ZeebeCloudEventsHelper.parseZeebeCloudEventFromRequest(headers, body);
         final String json = Json.encode(cloudEvent);
         log.info("Cloud Event: " + json);
