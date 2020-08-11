@@ -103,7 +103,7 @@ public class ZeebeCloudEventsRouterController {
         EventFormat format = EventFormatProvider
                 .getInstance()
                 .resolveFormat(JsonFormat.CONTENT_TYPE);
-        log.info("Cloud Event: " + format.serialize(cloudEvent));
+        log.info("Cloud Event: " + new String(format.serialize(cloudEvent)));
     }
 
     @PostMapping("/workflows")
@@ -159,7 +159,7 @@ public class ZeebeCloudEventsRouterController {
 
         //@TODO: deal with empty type and no correlation key.
         String cloudEventType = cloudEvent.getType();
-        String correlationKey = ((ZeebeCloudEventExtension) cloudEvent.getExtension("zeebe")).getCorrelationKey();
+        String correlationKey = (String) cloudEvent.getExtension(ZeebeCloudEventExtension.CORRELATION_KEY);
 
         //@TODO: deal with optional for Data, for empty Data
         zeebeClient.newPublishMessageCommand()
