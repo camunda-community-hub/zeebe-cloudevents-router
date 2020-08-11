@@ -1,0 +1,640 @@
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-5lbtp-8[0m stage [32mfrom-build-pack[0m and container [32mcredential-initializer[0m
+{"level":"info","ts":1597132249.8966885,"caller":"creds-init/main.go:44","msg":"Credentials initialized."}
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-5lbtp-8[0m stage [32mfrom-build-pack[0m and container [32mworking-dir-initializer[0m
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-5lbtp-8[0m stage [32mfrom-build-pack[0m and container [32mplace-tools[0m
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-5lbtp-8[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-zeebe-io-zeebe-cloud-events-rou-5lbtp-jgtmh[0m
+{"level":"info","ts":1597132259.3198533,"caller":"git/git.go:105","msg":"Successfully cloned https://github.com/zeebe-io/zeebe-cloud-events-router.git @ v0.0.14 in path /workspace/source"}
+{"level":"warn","ts":1597132259.3203487,"caller":"git/git.go:152","msg":"Unexpected error: creating symlink: symlink /tekton/home/.ssh /root/.ssh: file exists"}
+{"level":"info","ts":1597132259.36374,"caller":"git/git.go:133","msg":"Successfully initialized and updated submodules in path /workspace/source"}
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-5lbtp-8[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-builder-home[0m
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-5lbtp-8[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:
+WARNING: no SHAs to merge, falling back to initial cloned commit
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-5lbtp-8[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
+Generated Git credentials file /workspace/xdg_config/git/credentials
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-5lbtp-8[0m stage [32mfrom-build-pack[0m and container [32mstep-build-mvn-deploy[0m
+Picked up _JAVA_OPTIONS: -XX:+UnlockExperimentalVMOptions -Dsun.zip.disableMemoryMapping=true -XX:+UseParallelGC -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Xms10m -Xmx192m
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------< com.*******.zeebe:zeebe-cloud-events-router >-------------
+[INFO] Building Zeebe Cloud Events Router 0.0.14
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ zeebe-cloud-events-router ---
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ zeebe-cloud-events-router ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ zeebe-cloud-events-router ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 7 source files to /workspace/source/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ zeebe-cloud-events-router ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /workspace/source/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ zeebe-cloud-events-router ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /workspace/source/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:3.0.0-M1:test (default-test) @ zeebe-cloud-events-router ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[WARNING] Corrupted STDOUT by directly writing to native stream in forked JVM 1. See FAQ web page and the dump file /workspace/source/target/surefire-reports/2020-08-11T07-51-57_703-jvmRun1.dumpstream
+07:52:03.218 [main] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]
+07:52:03.226 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+07:52:03.227 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+07:52:03.232 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+07:52:03.235 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests], using SpringBootContextLoader
+07:52:03.241 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]: class path resource [io/zeebe/cloud/events/router/ZeebeCloudEventsRouterAppTests-context.xml] does not exist
+07:52:03.243 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]: class path resource [io/zeebe/cloud/events/router/ZeebeCloudEventsRouterAppTestsContext.groovy] does not exist
+07:52:03.247 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+07:52:03.249 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]: ZeebeCloudEventsRouterAppTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+07:52:03.257 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]
+07:52:03.264 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration io.zeebe.cloud.events.router.ZeebeCloudEventsRouterApp for test class io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests
+07:52:03.325 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]: using defaults.
+07:52:03.327 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+07:52:03.344 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [javax/servlet/ServletContext]
+07:52:03.346 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/TransactionDefinition]
+07:52:03.362 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+07:52:03.366 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@340b9973, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@56113384, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@5669c5fb, org.springframework.test.context.support.DirtiesContextTestExecutionListener@373ebf74, org.springframework.test.context.event.EventPublishingTestExecutionListener@5f9678e1, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@c4ed84, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@189aa67a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@5a9d6f02, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@362045c0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@112f364d]
+07:52:03.374 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]
+07:52:03.375 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]
+07:52:03.732 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]
+07:52:03.740 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]
+[INFO] Running io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests
+07:52:03.770 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]
+07:52:03.771 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]
+07:52:03.785 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]
+07:52:03.787 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]
+07:52:03.824 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@3543df7d testClass = ZeebeCloudEventsRouterAppTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [ReactiveWebMergedContextConfiguration@7c541c15 testClass = ZeebeCloudEventsRouterAppTests, locations = '{}', classes = '{class io.zeebe.cloud.events.router.ZeebeCloudEventsRouterApp}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@8462f31, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@70ed52de, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2a693f59, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@4d0d9fe7, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@3cce5371], contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map[[empty]]], class annotated with @DirtiesContext [false] with mode [null].
+07:52:03.848 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]
+07:52:03.853 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests]
+07:52:03.882 [main] DEBUG org.springframework.test.context.support.DependencyInjectionTestExecutionListener - Performing dependency injection for test context [[DefaultTestContext@3543df7d testClass = ZeebeCloudEventsRouterAppTests, testInstance = io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests@3e7634b9, testMethod = [null], testException = [null], mergedContextConfiguration = [ReactiveWebMergedContextConfiguration@7c541c15 testClass = ZeebeCloudEventsRouterAppTests, locations = '{}', classes = '{class io.zeebe.cloud.events.router.ZeebeCloudEventsRouterApp}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@8462f31, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@70ed52de, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2a693f59, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@4d0d9fe7, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@3cce5371], contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map[[empty]]]].
+07:52:04.002 [main] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=-1}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.0.RELEASE)
+
+2020-08-11 07:52:04.723  INFO 74 --- [           main] i.z.c.e.r.ZeebeCloudEventsRouterAppTests : Starting ZeebeCloudEventsRouterAppTests on zeebe-io-zeebe-cloud-events-rou-5lbtp-8-from-build-pack-5-n7d66 with PID 74 (started by root in /workspace/source)
+2020-08-11 07:52:04.737  INFO 74 --- [           main] i.z.c.e.r.ZeebeCloudEventsRouterAppTests : No active profile set, falling back to default profiles: default
+2020-08-11 07:52:08.551  INFO 74 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'io.zeebe.spring.client.config.processor.PostProcessorConfiguration' of type [io.zeebe.spring.client.config.processor.PostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-11 07:52:08.591  INFO 74 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'io.zeebe.spring.client.bean.value.factory.ReadAnnotationValueConfiguration' of type [io.zeebe.spring.client.bean.value.factory.ReadAnnotationValueConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-11 07:52:08.622  INFO 74 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'zeebeExpressionResolver' of type [io.zeebe.spring.util.ZeebeExpressionResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-11 07:52:08.720  INFO 74 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'readZeebeDeploymentValue' of type [io.zeebe.spring.client.bean.value.factory.ReadZeebeDeploymentValue] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-11 07:52:08.759  INFO 74 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'deploymentPostProcessor' of type [io.zeebe.spring.client.config.processor.DeploymentPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-11 07:52:08.806  INFO 74 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'readZeebeWorkerValue' of type [io.zeebe.spring.client.bean.value.factory.ReadZeebeWorkerValue] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-11 07:52:08.838  INFO 74 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'zeebeWorkerPostProcessor' of type [io.zeebe.spring.client.config.processor.ZeebeWorkerPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-11 07:52:09.223  INFO 74 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'zeebe.client-io.zeebe.spring.client.properties.ZeebeClientConfigurationProperties' of type [io.zeebe.spring.client.properties.ZeebeClientConfigurationProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-11 07:52:09.250  INFO 74 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'io.zeebe.spring.client.config.ZeebeClientStarterAutoConfiguration' of type [io.zeebe.spring.client.config.ZeebeClientStarterAutoConfiguration$$EnhancerBySpringCGLIB$$5925b29f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-11 07:52:09.318  INFO 74 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'builder' of type [io.zeebe.client.impl.ZeebeClientBuilderImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-11 07:52:09.326  INFO 74 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'io.zeebe.spring.client.config.ZeebeClientSpringConfiguration' of type [io.zeebe.spring.client.config.ZeebeClientSpringConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-11 07:52:09.364  INFO 74 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'zeebeClientObjectFactory' of type [io.zeebe.spring.client.config.ZeebeClientSpringConfiguration$$Lambda$449/0x0000000100391c40] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-11 07:52:09.402  INFO 74 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'zeebeClientLifecycle' of type [io.zeebe.spring.client.ZeebeClientLifecycle] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-11 07:52:09.744  INFO 74 --- [           main] i.z.s.c.c.p.ZeebeWorkerPostProcessor     : zeebeWorker: ClassInfo(bean=io.zeebe.cloud.events.router.ZeebeCloudEventsRouterWorker@27fe9713, beanName=zeebeCloudEventsRouterWorker)
+2020-08-11 07:52:16.543  INFO 74 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-08-11 07:52:20.640  INFO 74 --- [           main] i.z.s.c.c.p.ZeebeWorkerPostProcessor     : register job worker: ZeebeWorkerValue(type=cloudevents, name=cloudevents-router, timeout=86400000, maxJobsActive=-1, beanInfo=MethodInfo(classInfo=ClassInfo(bean=io.zeebe.cloud.events.router.ZeebeCloudEventsRouterWorker@27fe9713, beanName=zeebeCloudEventsRouterWorker), method=public void io.zeebe.cloud.events.router.ZeebeCloudEventsRouterWorker.cloudEventsRouterWorker(io.zeebe.client.api.worker.JobClient,io.zeebe.client.api.response.ActivatedJob) throws com.fasterxml.jackson.core.JsonProcessingException))
+2020-08-11 07:52:20.707  INFO 74 --- [           main] i.z.c.e.r.ZeebeCloudEventsRouterAppTests : Started ZeebeCloudEventsRouterAppTests in 16.667 seconds (JVM running for 21.207)
+2020-08-11 07:52:22.047  WARN 74 --- [ault-executor-1] io.zeebe.client.job.poller               : Failed to activated jobs for worker cloudevents-router and job type cloudevents
+
+io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+	at io.grpc.Status.asRuntimeException(Status.java:533) ~[grpc-api-1.28.1.jar:1.28.1]
+	at io.grpc.stub.ClientCalls$StreamObserverToCallListenerAdapter.onClose(ClientCalls.java:449) ~[grpc-stub-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:426) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.access$500(ClientCallImpl.java:66) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:689) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$900(ClientCallImpl.java:577) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:751) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:740) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123) ~[grpc-core-1.28.1.jar:1.28.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: /127.0.0.1:26500
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.throwConnectException(Errors.java:124) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:243) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:660) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:637) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:524) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:473) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:383) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-08-11 07:52:22.134  WARN 74 --- [ault-executor-0] io.zeebe.client.job.poller               : Failed to activated jobs for worker cloudevents-router and job type cloudevents
+
+io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+	at io.grpc.Status.asRuntimeException(Status.java:533) ~[grpc-api-1.28.1.jar:1.28.1]
+	at io.grpc.stub.ClientCalls$StreamObserverToCallListenerAdapter.onClose(ClientCalls.java:449) ~[grpc-stub-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:426) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.access$500(ClientCallImpl.java:66) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:689) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$900(ClientCallImpl.java:577) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:751) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:740) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123) ~[grpc-core-1.28.1.jar:1.28.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: /127.0.0.1:26500
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.throwConnectException(Errors.java:124) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:243) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:660) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:637) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:524) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:473) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:383) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-08-11 07:52:22.230  WARN 74 --- [ault-executor-0] io.zeebe.client.job.poller               : Failed to activated jobs for worker cloudevents-router and job type cloudevents
+
+io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+	at io.grpc.Status.asRuntimeException(Status.java:533) ~[grpc-api-1.28.1.jar:1.28.1]
+	at io.grpc.stub.ClientCalls$StreamObserverToCallListenerAdapter.onClose(ClientCalls.java:449) ~[grpc-stub-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:426) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.access$500(ClientCallImpl.java:66) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:689) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$900(ClientCallImpl.java:577) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:751) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:740) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123) ~[grpc-core-1.28.1.jar:1.28.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: /127.0.0.1:26500
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.throwConnectException(Errors.java:124) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:243) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:660) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:637) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:524) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:473) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:383) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-08-11 07:52:22.330  WARN 74 --- [ault-executor-0] io.zeebe.client.job.poller               : Failed to activated jobs for worker cloudevents-router and job type cloudevents
+
+io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+	at io.grpc.Status.asRuntimeException(Status.java:533) ~[grpc-api-1.28.1.jar:1.28.1]
+	at io.grpc.stub.ClientCalls$StreamObserverToCallListenerAdapter.onClose(ClientCalls.java:449) ~[grpc-stub-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:426) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.access$500(ClientCallImpl.java:66) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:689) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$900(ClientCallImpl.java:577) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:751) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:740) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123) ~[grpc-core-1.28.1.jar:1.28.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: /127.0.0.1:26500
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.throwConnectException(Errors.java:124) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:243) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:660) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:637) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:524) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:473) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:383) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-08-11 07:52:22.675  WARN 74 --- [ault-executor-0] io.zeebe.client.job.poller               : Failed to activated jobs for worker cloudevents-router and job type cloudevents
+
+io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+	at io.grpc.Status.asRuntimeException(Status.java:533) ~[grpc-api-1.28.1.jar:1.28.1]
+	at io.grpc.stub.ClientCalls$StreamObserverToCallListenerAdapter.onClose(ClientCalls.java:449) ~[grpc-stub-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:426) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.access$500(ClientCallImpl.java:66) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:689) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$900(ClientCallImpl.java:577) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:751) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:740) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123) ~[grpc-core-1.28.1.jar:1.28.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: /127.0.0.1:26500
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.throwConnectException(Errors.java:124) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:243) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:660) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:637) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:524) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:473) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:383) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-08-11 07:52:22.772  WARN 74 --- [ault-executor-0] io.zeebe.client.job.poller               : Failed to activated jobs for worker cloudevents-router and job type cloudevents
+
+io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+	at io.grpc.Status.asRuntimeException(Status.java:533) ~[grpc-api-1.28.1.jar:1.28.1]
+	at io.grpc.stub.ClientCalls$StreamObserverToCallListenerAdapter.onClose(ClientCalls.java:449) ~[grpc-stub-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:426) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.access$500(ClientCallImpl.java:66) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:689) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$900(ClientCallImpl.java:577) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:751) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:740) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123) ~[grpc-core-1.28.1.jar:1.28.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: /127.0.0.1:26500
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.throwConnectException(Errors.java:124) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:243) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:660) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:637) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:524) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:473) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:383) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-08-11 07:52:22.876  WARN 74 --- [ault-executor-0] io.zeebe.client.job.poller               : Failed to activated jobs for worker cloudevents-router and job type cloudevents
+
+io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+	at io.grpc.Status.asRuntimeException(Status.java:533) ~[grpc-api-1.28.1.jar:1.28.1]
+	at io.grpc.stub.ClientCalls$StreamObserverToCallListenerAdapter.onClose(ClientCalls.java:449) ~[grpc-stub-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:426) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.access$500(ClientCallImpl.java:66) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:689) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$900(ClientCallImpl.java:577) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:751) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:740) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123) ~[grpc-core-1.28.1.jar:1.28.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: /127.0.0.1:26500
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.throwConnectException(Errors.java:124) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:243) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:660) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:637) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:524) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:473) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:383) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-08-11 07:52:22.983  WARN 74 --- [ault-executor-0] io.zeebe.client.job.poller               : Failed to activated jobs for worker cloudevents-router and job type cloudevents
+
+io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+	at io.grpc.Status.asRuntimeException(Status.java:533) ~[grpc-api-1.28.1.jar:1.28.1]
+	at io.grpc.stub.ClientCalls$StreamObserverToCallListenerAdapter.onClose(ClientCalls.java:449) ~[grpc-stub-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:426) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.access$500(ClientCallImpl.java:66) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:689) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$900(ClientCallImpl.java:577) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:751) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:740) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123) ~[grpc-core-1.28.1.jar:1.28.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: /127.0.0.1:26500
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.throwConnectException(Errors.java:124) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:243) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:660) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:637) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:524) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:473) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:383) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-08-11 07:52:23.078  WARN 74 --- [ault-executor-0] io.zeebe.client.job.poller               : Failed to activated jobs for worker cloudevents-router and job type cloudevents
+
+io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+	at io.grpc.Status.asRuntimeException(Status.java:533) ~[grpc-api-1.28.1.jar:1.28.1]
+	at io.grpc.stub.ClientCalls$StreamObserverToCallListenerAdapter.onClose(ClientCalls.java:449) ~[grpc-stub-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:426) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.access$500(ClientCallImpl.java:66) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:689) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$900(ClientCallImpl.java:577) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:751) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:740) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123) ~[grpc-core-1.28.1.jar:1.28.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: /127.0.0.1:26500
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.throwConnectException(Errors.java:124) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:243) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:660) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:637) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:524) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:473) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:383) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-08-11 07:52:23.266  WARN 74 --- [ault-executor-0] io.zeebe.client.job.poller               : Failed to activated jobs for worker cloudevents-router and job type cloudevents
+
+io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+	at io.grpc.Status.asRuntimeException(Status.java:533) ~[grpc-api-1.28.1.jar:1.28.1]
+	at io.grpc.stub.ClientCalls$StreamObserverToCallListenerAdapter.onClose(ClientCalls.java:449) ~[grpc-stub-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:426) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.access$500(ClientCallImpl.java:66) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:689) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$900(ClientCallImpl.java:577) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:751) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:740) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123) ~[grpc-core-1.28.1.jar:1.28.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: /127.0.0.1:26500
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.throwConnectException(Errors.java:124) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:243) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:660) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:637) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:524) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:473) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:383) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-08-11 07:52:23.369  WARN 74 --- [ault-executor-0] io.zeebe.client.job.poller               : Failed to activated jobs for worker cloudevents-router and job type cloudevents
+
+io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+	at io.grpc.Status.asRuntimeException(Status.java:533) ~[grpc-api-1.28.1.jar:1.28.1]
+	at io.grpc.stub.ClientCalls$StreamObserverToCallListenerAdapter.onClose(ClientCalls.java:449) ~[grpc-stub-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:426) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.access$500(ClientCallImpl.java:66) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:689) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$900(ClientCallImpl.java:577) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:751) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:740) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123) ~[grpc-core-1.28.1.jar:1.28.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: /127.0.0.1:26500
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.throwConnectException(Errors.java:124) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:243) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:660) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:637) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:524) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:473) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:383) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-08-11 07:52:23.472  WARN 74 --- [ault-executor-0] io.zeebe.client.job.poller               : Failed to activated jobs for worker cloudevents-router and job type cloudevents
+
+io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+	at io.grpc.Status.asRuntimeException(Status.java:533) ~[grpc-api-1.28.1.jar:1.28.1]
+	at io.grpc.stub.ClientCalls$StreamObserverToCallListenerAdapter.onClose(ClientCalls.java:449) ~[grpc-stub-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:426) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.access$500(ClientCallImpl.java:66) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:689) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$900(ClientCallImpl.java:577) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:751) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:740) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123) ~[grpc-core-1.28.1.jar:1.28.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: /127.0.0.1:26500
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.throwConnectException(Errors.java:124) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:243) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:660) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:637) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:524) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:473) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:383) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.799 s - in io.zeebe.cloud.events.router.ZeebeCloudEventsRouterAppTests
+2020-08-11 07:52:23.576  WARN 74 --- [ault-executor-0] io.zeebe.client.job.poller               : Failed to activated jobs for worker cloudevents-router and job type cloudevents
+
+io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+	at io.grpc.Status.asRuntimeException(Status.java:533) ~[grpc-api-1.28.1.jar:1.28.1]
+	at io.grpc.stub.ClientCalls$StreamObserverToCallListenerAdapter.onClose(ClientCalls.java:449) ~[grpc-stub-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:426) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.access$500(ClientCallImpl.java:66) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:689) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$900(ClientCallImpl.java:577) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:751) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:740) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123) ~[grpc-core-1.28.1.jar:1.28.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: /127.0.0.1:26500
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.throwConnectException(Errors.java:124) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:243) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:660) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:637) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:524) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:473) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:383) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-08-11 07:52:23.677  WARN 74 --- [ault-executor-0] io.zeebe.client.job.poller               : Failed to activated jobs for worker cloudevents-router and job type cloudevents
+
+io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+	at io.grpc.Status.asRuntimeException(Status.java:533) ~[grpc-api-1.28.1.jar:1.28.1]
+	at io.grpc.stub.ClientCalls$StreamObserverToCallListenerAdapter.onClose(ClientCalls.java:449) ~[grpc-stub-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:426) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl.access$500(ClientCallImpl.java:66) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:689) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$900(ClientCallImpl.java:577) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:751) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:740) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.28.1.jar:1.28.1]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123) ~[grpc-core-1.28.1.jar:1.28.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: /127.0.0.1:26500
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.throwConnectException(Errors.java:124) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:243) ~[netty-transport-native-unix-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:660) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:637) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:524) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:473) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:383) ~[netty-transport-native-epoll-4.1.42.Final-linux-x86_64.jar:4.1.42.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.42.Final.jar:4.1.42.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ zeebe-cloud-events-router ---
+[INFO] Building jar: /workspace/source/target/zeebe-cloud-events-router-0.0.14.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.2.0.RELEASE:repackage (repackage) @ zeebe-cloud-events-router ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] 
+[INFO] --- maven-install-plugin:2.5.2:install (default-install) @ zeebe-cloud-events-router ---
+[INFO] Installing /workspace/source/target/zeebe-cloud-events-router-0.0.14.jar to /home/jenkins/.mvnrepository/com/*******/zeebe/zeebe-cloud-events-router/0.0.14/zeebe-cloud-events-router-0.0.14.jar
+[INFO] Installing /workspace/source/pom.xml to /home/jenkins/.mvnrepository/com/*******/zeebe/zeebe-cloud-events-router/0.0.14/zeebe-cloud-events-router-0.0.14.pom
+[INFO] 
+[INFO] --- maven-deploy-plugin:2.8.2:deploy (default-deploy) @ zeebe-cloud-events-router ---
+[INFO] Using alternate deployment repository local-nexus::default::http://nexus/repository/maven-releases/
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:31 min
+[INFO] Finished at: 2020-08-11T07:52:38Z
+[INFO] ------------------------------------------------------------------------
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-5lbtp-8[0m stage [32mfrom-build-pack[0m and container [32mstep-build-skaffold-version[0m
+v1.0.1
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-5lbtp-8[0m stage [32mfrom-build-pack[0m and container [32mstep-build-container-build[0m
+E0811 07:52:41.637342       9 aws_credentials.go:77] while getting AWS credentials NoCredentialProviders: no valid providers in chain. Deprecated.
+	For verbose messaging see aws.Config.CredentialsChainVerboseErrors
+[36mINFO[0m[0001] Retrieving image manifest openjdk:11-jre-slim 
+E0811 07:52:42.486790       9 metadata.go:154] while reading 'google-dockercfg' metadata: http status code: 404 while fetching url http://metadata.google.internal./computeMetadata/v1/instance/attributes/google-dockercfg
+E0811 07:52:42.489952       9 metadata.go:166] while reading 'google-dockercfg-url' metadata: http status code: 404 while fetching url http://metadata.google.internal./computeMetadata/v1/instance/attributes/google-dockercfg-url
+[36mINFO[0m[0003] Retrieving image manifest openjdk:11-jre-slim 
+[36mINFO[0m[0004] Built cross stage deps: map[]                
+[36mINFO[0m[0004] Retrieving image manifest openjdk:11-jre-slim 
+[36mINFO[0m[0004] Retrieving image manifest openjdk:11-jre-slim 
+[36mINFO[0m[0006] Executing 0 build triggers                   
+[36mINFO[0m[0006] cmd: EXPOSE                                  
+[36mINFO[0m[0006] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0006] Resolving srcs [pom.xml target/lib*]...      
+[36mINFO[0m[0006] Checking for cached layer gcr.io/camunda-researchanddevelopment/cache:791cd555b5104832899c35eb02e3326a44d1894c633837ef5884afbc9a0df328... 
+[36mINFO[0m[0006] No cached layer found for cmd COPY pom.xml target/lib* /opt/lib/ 
+[36mINFO[0m[0006] Resolving srcs [target/*.jar]...             
+[36mINFO[0m[0006] Unpacking rootfs as cmd COPY pom.xml target/lib* /opt/lib/ requires it. 
+[36mINFO[0m[0012] ENV PORT 8080                                
+[36mINFO[0m[0012] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0012] ENV CLASSPATH /opt/lib                       
+[36mINFO[0m[0012] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0012] EXPOSE 8080                                  
+[36mINFO[0m[0012] cmd: EXPOSE                                  
+[36mINFO[0m[0012] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0012] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0012] Resolving srcs [pom.xml target/lib*]...      
+[36mINFO[0m[0012] COPY pom.xml target/lib* /opt/lib/           
+[36mINFO[0m[0012] Resolving srcs [pom.xml target/lib*]...      
+[36mINFO[0m[0012] Resolving 1 paths                            
+[36mINFO[0m[0012] Taking snapshot of files...                  
+[36mINFO[0m[0012] Pushing layer gcr.io/camunda-researchanddevelopment/cache:791cd555b5104832899c35eb02e3326a44d1894c633837ef5884afbc9a0df328 to cache now 
+[36mINFO[0m[0012] Resolving srcs [target/*.jar]...             
+[36mINFO[0m[0012] COPY target/*.jar /opt/app.jar               
+[36mINFO[0m[0012] Resolving srcs [target/*.jar]...             
+[36mINFO[0m[0012] Resolving 1 paths                            
+[36mINFO[0m[0012] Taking snapshot of files...                  
+[36mINFO[0m[0013] Pushing layer gcr.io/camunda-researchanddevelopment/cache:f3c4a38c82455db4c521763bb33a569a8e284b301b060ee8cb3eea43c33d236d to cache now 
+[36mINFO[0m[0013] WORKDIR /opt                                 
+[36mINFO[0m[0013] cmd: workdir                                 
+[36mINFO[0m[0013] Changed working directory to /opt            
+[36mINFO[0m[0013] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0013] CMD ["java", "-jar", "app.jar"]              
+[36mINFO[0m[0013] No files changed in this command, skipping snapshotting. 
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-5lbtp-8[0m stage [32mfrom-build-pack[0m and container [32mstep-build-post-build[0m
+no CVE provider running in the current ** namespace so skip adding image to be analysed
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-5lbtp-8[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-changelog[0m
+Converted /workspace/source/charts/zeebe-cloud-events-router to an unshallow repository
+Generating change log from git ref a24b85f3c6d975fe1b64998f0111777a3d636ada => 29a9ed496f7384fb9ead352de14450da6d0654a6
+WARNING: No release found for zeebe-io/zeebe-cloud-events-router and tag v0.0.14 so creating a new release
+Updated the release information at https://github.com/zeebe-io/zeebe-cloud-events-router/releases/tag/v0.0.14
+generated: /workspace/source/charts/zeebe-cloud-events-router/templates/release.yaml
+Created Release zeebe-cloud-events-router-0-0-14 resource in namespace **
+Updating PipelineActivity zeebe-io-zeebe-cloud-events-router-master-8 with version 0.0.14
+Updated PipelineActivities zeebe-io-zeebe-cloud-events-router-master-8 with release notes URL: https://github.com/zeebe-io/zeebe-cloud-events-router/releases/tag/v0.0.14
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-5lbtp-8[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-helm-release[0m
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: storage.googleapis.com https://storage.googleapis.com/chartmuseum.jenkins-x.io
+Successfully added Helm repository storage.googleapis.com.
+Adding missing Helm repo: jenkins-x-chartmuseum http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository jenkins-x-chartmuseum.
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Uploading chart file zeebe-cloud-events-router-0.0.14.tgz to http://jenkins-x-chartmuseum:8080/api/charts
+Received 201 response: {"saved":true}
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-5lbtp-8[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-jx-promote[0m
+WARNING: prow based install so skip waiting for the merge of Pull Requests to go green as currently there is an issue with gettingstatuses from the PR, see https://github.com/jenkins-x/**/issues/2410
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Promoting app zeebe-cloud-events-router version 0.0.14 to namespace **-staging
+Created Pull Request: https://github.com/*******/environment-zeebe-helm-new-staging/pull/82
+Added label updatebot to Pull Request https://github.com/*******/environment-zeebe-helm-new-staging/pull/82
+got git provider status pending from PR https://github.com/*******/environment-zeebe-helm-new-staging/pull/82
+Pull Request https://github.com/*******/environment-zeebe-helm-new-staging/pull/82 is merged at sha 896948d2e43c3b45e14cb34756e05e33ef0fa6f1
+Pull Request merged but we are not waiting for the update pipeline to complete!
