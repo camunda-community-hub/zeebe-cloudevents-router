@@ -1,7 +1,6 @@
 package io.zeebe.cloud.events.router;
 
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.salaboy.cloudevents.helper.CloudEventsHelper;
@@ -67,34 +66,32 @@ public class ZeebeCloudEventsRouterController {
 
         logCloudEvent(cloudEvent);
 
+        String workflowKey = (String) cloudEvent.getExtension(ZeebeCloudEventExtension.WORKFLOW_KEY);
+        String workflowInstanceKey = (String) cloudEvent.getExtension(ZeebeCloudEventExtension.WORKFLOW_INSTANCE_KEY);
+        String jobKey = (String) cloudEvent.getExtension(ZeebeCloudEventExtension.JOB_KEY);
 
-        ZeebeCloudEventExtension zeebeCloudEventExtension = (ZeebeCloudEventExtension) cloudEvent.getExtension("zeebe");
-        if (zeebeCloudEventExtension != null) {
-            String workflowKey = zeebeCloudEventExtension.getWorkflowKey();
-            String workflowInstanceKey = zeebeCloudEventExtension.getWorkflowInstanceKey();
-            String jobKey = zeebeCloudEventExtension.getJobKey();
+        if(workflowKey == null || workflowInstanceKey == null || jobKey == null){
+            throw new IllegalStateException("Cloud Event missing Zeebe Extension fields, which are required to complete a job");
+        }
 
-            Set<String> pendingJobs = mappingsService.getPendingJobsForWorkflowKey(workflowKey).get(workflowInstanceKey);
-            if (pendingJobs != null) {
-                if (!pendingJobs.isEmpty()) {
-                    if (pendingJobs.contains(jobKey)) {
-                        //@TODO: deal with Optionals for Data
-                        jobClient.newCompleteCommand(Long.valueOf(jobKey)).variables(cloudEvent.getData()).send().join();
-                        mappingsService.removePendingJobFromWorkflow(workflowKey, workflowInstanceKey, jobKey);
-                    } else {
-                        log.error("Job Key: " + jobKey + " not found");
-                        throw new IllegalStateException("Job Key: " + jobKey + " not found");
-                    }
+        Set<String> pendingJobs = mappingsService.getPendingJobsForWorkflowKey(workflowKey).get(workflowInstanceKey);
+        if (pendingJobs != null) {
+            if (!pendingJobs.isEmpty()) {
+                if (pendingJobs.contains(jobKey)) {
+                    //@TODO: deal with Optionals for Data
+                    jobClient.newCompleteCommand(Long.valueOf(jobKey)).variables(cloudEvent.getData()).send().join();
+                    mappingsService.removePendingJobFromWorkflow(workflowKey, workflowInstanceKey, jobKey);
                 } else {
-                    log.error("This workflow instance key: " + workflowInstanceKey + " doesn't have any pending jobs");
-                    throw new IllegalStateException("This workflow instance key: " + workflowInstanceKey + " doesn't have any pending jobs");
+                    log.error("Job Key: " + jobKey + " not found");
+                    throw new IllegalStateException("Job Key: " + jobKey + " not found");
                 }
             } else {
-                log.error("Workflow instance key: " + workflowInstanceKey + " not found");
-                throw new IllegalStateException("Workflow instance key: " + workflowInstanceKey + " not found");
+                log.error("This workflow instance key: " + workflowInstanceKey + " doesn't have any pending jobs");
+                throw new IllegalStateException("This workflow instance key: " + workflowInstanceKey + " doesn't have any pending jobs");
             }
         } else {
-            throw new IllegalStateException("Cloud Event recieved doesn't have Zeebe Extension, which is required to complete a job");
+            log.error("Workflow instance key: " + workflowInstanceKey + " not found");
+            throw new IllegalStateException("Workflow instance key: " + workflowInstanceKey + " not found");
         }
 
         // @TODO: decide on return types
@@ -156,10 +153,7 @@ public class ZeebeCloudEventsRouterController {
     @PostMapping("/message")
     public String receiveCloudEventForMessage(@RequestHeader HttpHeaders headers, @RequestBody Object body) throws JsonProcessingException {
         CloudEvent cloudEvent = ZeebeCloudEventsHelper.parseZeebeCloudEventFromRequest(headers, body);
-        ObjectMapper objectMapper = new ObjectMapper();
         logCloudEvent(cloudEvent);
-        log.info(new String(cloudEvent.getData()));
-        log.info(objectMapper.writeValueAsString(new String(cloudEvent.getData())));
 
         //@TODO: deal with empty type and no correlation key.
         String cloudEventType = cloudEvent.getType();
