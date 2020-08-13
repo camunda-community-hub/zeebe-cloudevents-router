@@ -79,7 +79,7 @@ public class ZeebeCloudEventsRouterController {
             if (!pendingJobs.isEmpty()) {
                 if (pendingJobs.contains(jobKey)) {
                     //@TODO: deal with Optionals for Data
-                    jobClient.newCompleteCommand(Long.valueOf(jobKey)).variables(cloudEvent.getData()).send().join();
+                    jobClient.newCompleteCommand(Long.valueOf(jobKey)).variables(new String(cloudEvent.getData())).send().join();
                     mappingsService.removePendingJobFromWorkflow(workflowKey, workflowInstanceKey, jobKey);
                 } else {
                     log.error("Job Key: " + jobKey + " not found");
