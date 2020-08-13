@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.salaboy.zeebe</groupId>
 	<artifactId>zeebe-cloud-events-router</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.31</version>
 	<name>Zeebe Cloud Events Router</name>
 	<description>Zeebe Cloud Events Router</description>
 
