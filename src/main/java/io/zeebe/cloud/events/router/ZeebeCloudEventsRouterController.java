@@ -115,6 +115,21 @@ public class ZeebeCloudEventsRouterController {
         return mappingsService.getStartWorkflowByCloudEvents();
     }
 
+    @DeleteMapping("/workflow")
+    public void cancelWorkflow(@RequestHeader HttpHeaders headers, @RequestBody Map<String, String> body) {
+        CloudEvent cloudEvent = ZeebeCloudEventsHelper.parseZeebeCloudEventFromRequest(headers, body);
+        logCloudEvent(cloudEvent);
+        String workflowInstanceKey = (String)cloudEvent.getExtension(ZeebeCloudEventExtension.WORKFLOW_INSTANCE_KEY);
+        if(workflowInstanceKey != null && !workflowInstanceKey.equals("")) {
+            zeebeClient.newCancelInstanceCommand(Long.valueOf(workflowInstanceKey))
+                    .send().join();
+            log.info("Cancelling Workflow Instance: " + workflowInstanceKey);
+        }else{
+            log.error("There is no Workflow Instance Key available in the Cloud Event: " + cloudEvent);
+        }
+
+    }
+
     @PostMapping("/workflow")
     public void startWorkflow(@RequestHeader HttpHeaders headers, @RequestBody Map<String, String> body) {
         CloudEvent cloudEvent = CloudEventsHelper.parseFromRequest(headers.toSingleValueMap(), body);
@@ -141,6 +156,15 @@ public class ZeebeCloudEventsRouterController {
         } else {
             log.error("No workflow was started with: " + workflowByCloudEvent.toString());
         }
+    }
+
+    @PostMapping("/error")
+    public void receiveCloudEventForError(@RequestHeader HttpHeaders headers, @RequestBody Object body){
+        CloudEvent cloudEvent = ZeebeCloudEventsHelper.parseZeebeCloudEventFromRequest(headers, body);
+        logCloudEvent(cloudEvent);
+
+        log.info("I should emit a BPMN Error here... ");
+        //zeebeClient.newThrowErrorCommand().errorCode()
     }
 
     @PostMapping("/messages")
