@@ -176,12 +176,14 @@ public class ZeebeCloudEventsRouterController {
 
     @PostMapping("/message")
     public String receiveCloudEventForMessage(@RequestHeader HttpHeaders headers, @RequestBody Object body) throws JsonProcessingException {
+        log.info("Request Headers in the Router: "+ headers.toString());
         CloudEvent cloudEvent = ZeebeCloudEventsHelper.parseZeebeCloudEventFromRequest(headers, body);
         logCloudEvent(cloudEvent);
 
         //@TODO: deal with empty type and no correlation key.
         String cloudEventType = cloudEvent.getType();
         String correlationKey = (String) cloudEvent.getExtension(ZeebeCloudEventExtension.CORRELATION_KEY);
+
 
         //@TODO: deal with optional for Data, for empty Data
         zeebeClient.newPublishMessageCommand()
