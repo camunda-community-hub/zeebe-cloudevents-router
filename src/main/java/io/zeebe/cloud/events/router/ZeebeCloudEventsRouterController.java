@@ -132,7 +132,7 @@ public class ZeebeCloudEventsRouterController {
 
     @PostMapping("/workflow")
     public void startWorkflow(@RequestHeader HttpHeaders headers, @RequestBody Map<String, String> body) {
-        CloudEvent cloudEvent = CloudEventsHelper.parseFromRequest(headers.toSingleValueMap(), body);
+        CloudEvent cloudEvent = CloudEventsHelper.parseFromRequest(headers, body);
         WorkflowByCloudEvent workflowByCloudEvent = mappingsService.getStartWorkflowByCloudEvent(cloudEvent.getType());
         if (workflowByCloudEvent.getBpmnProcessId() != null && !workflowByCloudEvent.getBpmnProcessId().equals("")) {
             //@TODO: deal with empty body for variables
