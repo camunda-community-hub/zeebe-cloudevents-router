@@ -1,0 +1,45 @@
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-t98tw-31[0m stage [32mfrom-build-pack[0m and container [32mcredential-initializer[0m
+{"level":"info","ts":1599727880.9691505,"caller":"creds-init/main.go:44","msg":"Credentials initialized."}
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-t98tw-31[0m stage [32mfrom-build-pack[0m and container [32mworking-dir-initializer[0m
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-t98tw-31[0m stage [32mfrom-build-pack[0m and container [32mplace-tools[0m
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-t98tw-31[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-zeebe-io-zeebe-cloud-events-rou-t98tw-pq48m[0m
+{"level":"info","ts":1599727889.6356392,"caller":"git/git.go:105","msg":"Successfully cloned https://github.com/zeebe-io/zeebe-cloud-events-router.git @ v0.0.37 in path /workspace/source"}
+{"level":"warn","ts":1599727889.6360745,"caller":"git/git.go:152","msg":"Unexpected error: creating symlink: symlink /tekton/home/.ssh /root/.ssh: file exists"}
+{"level":"info","ts":1599727889.6841252,"caller":"git/git.go:133","msg":"Successfully initialized and updated submodules in path /workspace/source"}
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-t98tw-31[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-builder-home[0m
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-t98tw-31[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:
+WARNING: no SHAs to merge, falling back to initial cloned commit
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-t98tw-31[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
+Generated Git credentials file /workspace/xdg_config/git/credentials
+
+Showing logs for build [32mzeebe-io-zeebe-cloud-events-rou-t98tw-31[0m stage [32mfrom-build-pack[0m and container [32mstep-build-mvn-deploy[0m
+Picked up _JAVA_OPTIONS: -XX:+UnlockExperimentalVMOptions -Dsun.zip.disableMemoryMapping=true -XX:+UseParallelGC -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Xms10m -Xmx192m
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------< com.*******.zeebe:zeebe-cloud-events-router >-------------
+[INFO] Building Zeebe Cloud Events Router 0.0.37
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] The POM for com.github.*******:zeebe-cloud-events-java-sdk:jar:master-SNAPSHOT is missing, no dependency information available
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  41.331 s
+[INFO] Finished at: 2020-09-10T08:52:17Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal on project zeebe-cloud-events-router: Could not resolve dependencies for project com.*******.zeebe:zeebe-cloud-events-router:jar:0.0.37: Could not find artifact com.github.*******:zeebe-cloud-events-java-sdk:jar:master-SNAPSHOT in nexus (http://nexus/repository/maven-group/) -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/DependencyResolutionException
+[31m
+Pipeline failed on stage 'from-build-pack' : container 'step-build-mvn-deploy'. The execution of the pipeline has stopped.[0m
