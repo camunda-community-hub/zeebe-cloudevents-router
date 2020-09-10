@@ -9,6 +9,11 @@ import io.cloudevents.core.format.EventFormat;
 import io.cloudevents.core.provider.EventFormatProvider;
 
 import io.cloudevents.jackson.JsonFormat;
+import io.fabric8.knative.client.DefaultKnativeClient;
+import io.fabric8.knative.client.KnativeClient;
+import io.fabric8.knative.serving.v1.Service;
+import io.fabric8.knative.serving.v1.ServiceList;
+import io.zeebe.client.api.response.DeploymentEvent;
 import io.zeebe.client.api.worker.JobClient;
 import io.zeebe.cloudevents.ZeebeCloudEventExtension;
 import io.zeebe.cloudevents.ZeebeCloudEventsHelper;
@@ -103,6 +108,24 @@ public class ZeebeCloudEventsRouterController {
                 .getInstance()
                 .resolveFormat(JsonFormat.CONTENT_TYPE);
         log.info("Cloud Event: " + new String(format.serialize(cloudEvent)));
+    }
+
+    @PostMapping("/deploy")
+    public void deployWorkflow(@RequestBody DeployWorkflowPayload dwp) {
+
+//        DeploymentEvent deploymentEvent = zeebeClient.newDeployCommand().addResourceStringUtf8(dwp.getName(), dwp.getWorkflowDefinition()).send().join();
+        try (KnativeClient kn = new DefaultKnativeClient()) {
+            // Get all Service objects
+            ServiceList services = kn.services()
+                    .inNamespace("default")
+                    .list();
+            // Iterate through list and print names
+            for (Service svc : services.getItems()) {
+                System.out.println(svc.getMetadata().getName());
+            }
+        }
+
+
     }
 
     @PostMapping("/workflows")

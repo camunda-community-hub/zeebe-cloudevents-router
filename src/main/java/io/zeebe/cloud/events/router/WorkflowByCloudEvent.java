@@ -1,7 +1,6 @@
 package io.zeebe.cloud.events.router;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import io.zeebe.client.ClientProperties;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
