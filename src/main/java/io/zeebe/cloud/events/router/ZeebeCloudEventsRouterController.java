@@ -2,29 +2,34 @@ package io.zeebe.cloud.events.router;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.salaboy.cloudevents.helper.CloudEventsHelper;
 import io.cloudevents.CloudEvent;
 import io.cloudevents.core.format.EventFormat;
 import io.cloudevents.core.provider.EventFormatProvider;
-
+import io.zeebe.client.api.response.DeploymentEvent;
+import io.zeebe.model.bpmn.instance.Message;
+import io.zeebe.model.bpmn.instance.Process;
 import io.cloudevents.jackson.JsonFormat;
 import io.fabric8.knative.client.DefaultKnativeClient;
 import io.fabric8.knative.client.KnativeClient;
 import io.fabric8.knative.eventing.v1alpha1.Trigger;
 import io.fabric8.knative.eventing.v1alpha1.TriggerList;
-import io.fabric8.knative.serving.v1.Service;
-import io.fabric8.knative.serving.v1.ServiceList;
-import io.zeebe.client.api.response.DeploymentEvent;
+
 import io.zeebe.client.api.worker.JobClient;
 import io.zeebe.cloudevents.ZeebeCloudEventExtension;
 import io.zeebe.cloudevents.ZeebeCloudEventsHelper;
+import io.zeebe.model.bpmn.Bpmn;
+import io.zeebe.model.bpmn.BpmnModelInstance;
+import io.zeebe.model.bpmn.instance.Definitions;
+import io.zeebe.model.bpmn.instance.bpmndi.BpmnDiagram;
 import io.zeebe.spring.client.ZeebeClientLifecycle;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.ByteArrayInputStream;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -77,7 +82,7 @@ public class ZeebeCloudEventsRouterController {
         String workflowInstanceKey = (String) cloudEvent.getExtension(ZeebeCloudEventExtension.WORKFLOW_INSTANCE_KEY);
         String jobKey = (String) cloudEvent.getExtension(ZeebeCloudEventExtension.JOB_KEY);
 
-        if(workflowKey == null || workflowInstanceKey == null || jobKey == null){
+        if (workflowKey == null || workflowInstanceKey == null || jobKey == null) {
             throw new IllegalStateException("Cloud Event missing Zeebe Extension fields, which are required to complete a job");
         }
 
@@ -114,8 +119,6 @@ public class ZeebeCloudEventsRouterController {
 
     @PostMapping("/deploy")
     public void deployWorkflow(@RequestBody DeployWorkflowPayload dwp) {
-
-//        DeploymentEvent deploymentEvent = zeebeClient.newDeployCommand().addResourceStringUtf8(dwp.getName(), dwp.getWorkflowDefinition()).send().join();
         try (KnativeClient kn = new DefaultKnativeClient()) {
             // Get all Service objects
             TriggerList triggerList = kn.triggers()
@@ -123,9 +126,21 @@ public class ZeebeCloudEventsRouterController {
                     .list();
             // Iterate through list and print names
             for (Trigger trigger : triggerList.getItems()) {
-                System.out.println(trigger.getMetadata().getName()  + " -> Broker: " + trigger.getSpec().getBroker()  + " -> Filter attr type: " + trigger.getSpec().getFilter().getAttributes().get("type") + " -> Subscriber: " + trigger.getSpec().getSubscriber().getUri());
+                System.out.println(trigger.getMetadata().getName() + " -> Broker: " + trigger.getSpec().getBroker() + " -> Filter attr type: " + trigger.getSpec().getFilter().getAttributes().get("type") + " -> Subscriber: " + trigger.getSpec().getSubscriber().getUri());
             }
         }
+
+        BpmnModelInstance bpmnModelInstance = Bpmn.readModelFromStream(new ByteArrayInputStream(dwp.getWorkflowDefinition().getBytes()));
+        Definitions definitions = bpmnModelInstance.getDefinitions();
+
+        Collection<Message> messages = definitions.getModelInstance().getModelElementsByType(Message.class);
+        for (Message m : messages) {
+            log.info("Message: " + m.getName());
+        }
+
+
+        DeploymentEvent deploymentEvent = zeebeClient.newDeployCommand().addWorkflowModel(bpmnModelInstance, dwp.getName()).send().join();
+        log.info("Deployment Event: " + deploymentEvent);
 
 
     }
@@ -144,12 +159,12 @@ public class ZeebeCloudEventsRouterController {
     public void cancelWorkflow(@RequestHeader HttpHeaders headers, @RequestBody Map<String, String> body) {
         CloudEvent cloudEvent = ZeebeCloudEventsHelper.parseZeebeCloudEventFromRequest(headers, body);
         logCloudEvent(cloudEvent);
-        String workflowInstanceKey = (String)cloudEvent.getExtension(ZeebeCloudEventExtension.WORKFLOW_INSTANCE_KEY);
-        if(workflowInstanceKey != null && !workflowInstanceKey.equals("")) {
+        String workflowInstanceKey = (String) cloudEvent.getExtension(ZeebeCloudEventExtension.WORKFLOW_INSTANCE_KEY);
+        if (workflowInstanceKey != null && !workflowInstanceKey.equals("")) {
             zeebeClient.newCancelInstanceCommand(Long.valueOf(workflowInstanceKey))
                     .send().join();
             log.info("Cancelling Workflow Instance: " + workflowInstanceKey);
-        }else{
+        } else {
             log.error("There is no Workflow Instance Key available in the Cloud Event: " + cloudEvent);
         }
 
@@ -184,7 +199,7 @@ public class ZeebeCloudEventsRouterController {
     }
 
     @PostMapping("/error")
-    public void receiveCloudEventForError(@RequestHeader HttpHeaders headers, @RequestBody Object body){
+    public void receiveCloudEventForError(@RequestHeader HttpHeaders headers, @RequestBody Object body) {
         CloudEvent cloudEvent = ZeebeCloudEventsHelper.parseZeebeCloudEventFromRequest(headers, body);
         logCloudEvent(cloudEvent);
 
@@ -201,7 +216,7 @@ public class ZeebeCloudEventsRouterController {
 
     @PostMapping("/message")
     public String receiveCloudEventForMessage(@RequestHeader HttpHeaders headers, @RequestBody Object body) throws JsonProcessingException {
-        log.info("Request Headers in the Router: "+ headers.toString());
+        log.info("Request Headers in the Router: " + headers.toString());
         CloudEvent cloudEvent = ZeebeCloudEventsHelper.parseZeebeCloudEventFromRequest(headers, body);
         logCloudEvent(cloudEvent);
 
