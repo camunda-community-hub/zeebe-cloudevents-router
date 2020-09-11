@@ -119,16 +119,16 @@ public class ZeebeCloudEventsRouterController {
 
     @PostMapping("/deploy")
     public void deployWorkflow(@RequestBody DeployWorkflowPayload dwp) {
-        try (KnativeClient kn = new DefaultKnativeClient()) {
-            // Get all Service objects
-            TriggerList triggerList = kn.triggers()
-                    .inNamespace("default")
-                    .list();
-            // Iterate through list and print names
-            for (Trigger trigger : triggerList.getItems()) {
-                System.out.println(trigger.getMetadata().getName() + " -> Broker: " + trigger.getSpec().getBroker() + " -> Filter attr type: " + trigger.getSpec().getFilter().getAttributes().get("type") + " -> Subscriber: " + trigger.getSpec().getSubscriber().getUri());
-            }
-        }
+//        try (KnativeClient kn = new DefaultKnativeClient()) {
+//            // Get all Service objects
+//            TriggerList triggerList = kn.triggers()
+//                    .inNamespace("default")
+//                    .list();
+//            // Iterate through list and print names
+//            for (Trigger trigger : triggerList.getItems()) {
+//                System.out.println(trigger.getMetadata().getName() + " -> Broker: " + trigger.getSpec().getBroker() + " -> Filter attr type: " + trigger.getSpec().getFilter().getAttributes().get("type") + " -> Subscriber: " + trigger.getSpec().getSubscriber().getUri());
+//            }
+//        }
 
         BpmnModelInstance bpmnModelInstance = Bpmn.readModelFromStream(new ByteArrayInputStream(dwp.getWorkflowDefinition().getBytes()));
         Definitions definitions = bpmnModelInstance.getDefinitions();
