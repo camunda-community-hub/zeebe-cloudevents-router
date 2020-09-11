@@ -9,3 +9,6 @@ rules:
   - apiGroups: ["serving.knative.dev"]
     resources: ["configurations", "routes", "revisions"]
     verbs: ["get", "list"]
+  - apiGroups: ["eventing.knative.dev"]
+    resources: ["triggers"]
+    verbs: ["get", "list", "create", "update", "delete"]
