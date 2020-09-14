@@ -21,7 +21,8 @@
         <maven.compiler.target>11</maven.compiler.target>
         <zeebe.version>0.24.0</zeebe.version>
         <springdoc-openapi-ui.version>1.2.32</springdoc-openapi-ui.version>
-        <knative-client.version>4.11.1</knative-client.version>
+<!--        <knative-client.version>4.11.1</knative-client.version>-->
+        <knative-client.version>master-SNAPSHOT</knative-client.version>
     </properties>
 
     <dependencies>
@@ -55,7 +56,7 @@
         </dependency>
 
         <dependency>
-            <groupId>io.fabric8</groupId>
+            <groupId>com.github.fabric8io.kubernetes-client</groupId>
             <artifactId>knative-client</artifactId>
             <version>${knative-client.version}</version>
         </dependency>

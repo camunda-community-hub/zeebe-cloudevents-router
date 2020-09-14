@@ -6,22 +6,19 @@ import com.salaboy.cloudevents.helper.CloudEventsHelper;
 import io.cloudevents.CloudEvent;
 import io.cloudevents.core.format.EventFormat;
 import io.cloudevents.core.provider.EventFormatProvider;
-import io.zeebe.client.api.response.DeploymentEvent;
-import io.zeebe.model.bpmn.instance.Message;
-import io.zeebe.model.bpmn.instance.Process;
 import io.cloudevents.jackson.JsonFormat;
 import io.fabric8.knative.client.DefaultKnativeClient;
 import io.fabric8.knative.client.KnativeClient;
-import io.fabric8.knative.eventing.v1alpha1.Trigger;
-import io.fabric8.knative.eventing.v1alpha1.TriggerList;
-
+import io.fabric8.knative.eventing.v1.Trigger;
+import io.fabric8.knative.eventing.v1.TriggerList;
+import io.zeebe.client.api.response.DeploymentEvent;
 import io.zeebe.client.api.worker.JobClient;
 import io.zeebe.cloudevents.ZeebeCloudEventExtension;
 import io.zeebe.cloudevents.ZeebeCloudEventsHelper;
 import io.zeebe.model.bpmn.Bpmn;
 import io.zeebe.model.bpmn.BpmnModelInstance;
 import io.zeebe.model.bpmn.instance.Definitions;
-import io.zeebe.model.bpmn.instance.bpmndi.BpmnDiagram;
+import io.zeebe.model.bpmn.instance.Message;
 import io.zeebe.spring.client.ZeebeClientLifecycle;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,30 +116,44 @@ public class ZeebeCloudEventsRouterController {
 
     @PostMapping("/deploy")
     public void deployWorkflow(@RequestBody DeployWorkflowPayload dwp) {
-//        try (KnativeClient kn = new DefaultKnativeClient()) {
-//            // Get all Service objects
-//            TriggerList triggerList = kn.triggers()
-//                    .inNamespace("default")
-//                    .list();
-//            // Iterate through list and print names
-//            for (Trigger trigger : triggerList.getItems()) {
-//                System.out.println(trigger.getMetadata().getName() + " -> Broker: " + trigger.getSpec().getBroker() + " -> Filter attr type: " + trigger.getSpec().getFilter().getAttributes().get("type") + " -> Subscriber: " + trigger.getSpec().getSubscriber().getUri());
-//            }
-//        }
+        try (KnativeClient kn = new DefaultKnativeClient()) {
+            // Get all Service objects
+            TriggerList triggerList = kn.triggers()
+                    .inNamespace("default")
+                    .list();
+            // Iterate through list and print names
+            for (Trigger trigger : triggerList.getItems()) {
+                System.out.println(trigger.getMetadata().getName() + " -> Broker: " + trigger.getSpec().getBroker() + " -> Filter attr type: " + trigger.getSpec().getFilter().getAttributes().get("type") + " -> Subscriber: " + trigger.getSpec().getSubscriber().getUri());
+            }
 
-        BpmnModelInstance bpmnModelInstance = Bpmn.readModelFromStream(new ByteArrayInputStream(dwp.getWorkflowDefinition().getBytes()));
-        Definitions definitions = bpmnModelInstance.getDefinitions();
 
-        Collection<Message> messages = definitions.getModelInstance().getModelElementsByType(Message.class);
-        for (Message m : messages) {
-            log.info("Message: " + m.getName());
+            BpmnModelInstance bpmnModelInstance = Bpmn.readModelFromStream(new ByteArrayInputStream(dwp.getWorkflowDefinition().getBytes()));
+            Definitions definitions = bpmnModelInstance.getDefinitions();
+
+            Collection<Message> messages = definitions.getModelInstance().getModelElementsByType(Message.class);
+            for (Message m : messages) {
+                log.info("Message: " + m.getName());
+                kn.triggers().createOrReplaceWithNew()
+                        .withNewMetadata()
+                            .withName("router-" + m.getName())
+                        .endMetadata()
+                        .withNewSpec()
+                            .withBroker("default")
+                            .withNewFilter()
+                                .addToAttributes("type", m.getName())
+                            .endFilter()
+                        .withNewSubscriber()
+                            .withUri("")
+                        .endSubscriber()
+                        .endSpec()
+                        .done();
+            }
+
+
+            DeploymentEvent deploymentEvent = zeebeClient.newDeployCommand().addWorkflowModel(bpmnModelInstance, dwp.getName()).send().join();
+            log.info("Deployment Event: " + deploymentEvent);
+
         }
-
-
-        DeploymentEvent deploymentEvent = zeebeClient.newDeployCommand().addWorkflowModel(bpmnModelInstance, dwp.getName()).send().join();
-        log.info("Deployment Event: " + deploymentEvent);
-
-
     }
 
     @PostMapping("/workflows")
