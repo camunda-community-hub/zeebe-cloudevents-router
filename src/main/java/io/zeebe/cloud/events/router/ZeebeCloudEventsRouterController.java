@@ -143,7 +143,7 @@ public class ZeebeCloudEventsRouterController {
                                 .addToAttributes("type", m.getName())
                             .endFilter()
                         .withNewSubscriber()
-                            .withUri("")
+                            .withUri("http://zeebe-cloud-events-router.default.svc.cluster.local/message")
                         .endSubscriber()
                         .endSpec()
                         .done();
