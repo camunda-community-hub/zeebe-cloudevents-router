@@ -135,7 +135,7 @@ public class ZeebeCloudEventsRouterController {
                 log.info("Message: " + m.getName());
                 kn.triggers().createOrReplaceWithNew()
                         .withNewMetadata()
-                            .withName("router-" + m.getName().replace(".", "-"))
+                            .withName("router-" + m.getName().replace(".", "-").toLowerCase())
                         .endMetadata()
                         .withNewSpec()
                             .withBroker("default")
