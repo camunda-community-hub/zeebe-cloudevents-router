@@ -1,6 +1,6 @@
 # Zeebe Knative / Cloud Events Worker
 
-This project focus in providing a bridge between Zeebe + BPMN to Knative and Cloud Events to provide Cloud Events orchestration using Zeebe Workflows. 
+This amazing project focuses on providing a bridge between Zeebe + BPMN to Knative and Cloud Events to provide Cloud Events orchestration using Zeebe Workflows. 
 
 
 
