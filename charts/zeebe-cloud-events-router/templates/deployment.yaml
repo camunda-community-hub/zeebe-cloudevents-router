@@ -30,6 +30,27 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
+          - name: VERSION
+            value: {{ .Chart.Version }}
+          - name: ZEEBE_CLIENT_BROKER_CONTACTPOINT
+            valueFrom:
+              secretKeyRef:
+                key: zeebe-address
+                name: camunda-cloud-secret
+          - name: ZEEBE_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                key: zeebe-client-id
+                name: camunda-cloud-secret
+          - name: ZEEBE_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: zeebe-client-secret
+                name: camunda-cloud-secret
+          - name: ZEEBE_AUTHORIZATION_SERVER_URL
+            value: https://login.cloud.camunda.io/oauth/token
+          - name: ZEEBE_CLIENT_SECURITY_PLAINTEXT
+            value: "false"
 {{- range $pkey, $pval := .Values.env }}
         - name: {{ $pkey }}
           value: {{ quote $pval }}
