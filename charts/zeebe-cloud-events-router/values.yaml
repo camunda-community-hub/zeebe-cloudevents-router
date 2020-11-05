@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: draft
-  tag: dev
+  repository: gcr.io/camunda-researchanddevelopment/zeebe-cloud-events-router
+  tag: 0.0.51
   pullPolicy: IfNotPresent
 
 # optional list of image pull secrets to use to pull images
