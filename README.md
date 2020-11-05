@@ -3,7 +3,6 @@
 This project focus in providing a bridge between Zeebe + BPMN to Knative and Cloud Events to provide Cloud Events orchestration using Zeebe Workflows. 
 
 
-
 # Service Task Properties
 
 Properties
@@ -57,3 +56,9 @@ Register Tickets.Purchase event to Start Workflow
 Send Tickets.Purchase to start a workflow
 > curl -X POST http://localhost:8080/workflow -H "Content-Type: application/json" -H "Ce-Id: 536808d33" -H "Ce-Type: Tickets.Purchase" -H "Ce-Source: curl" -d '{"sessionId":"5" }'
              
+# Secrets and Secrets Managers
+
+This project can be used with `External Secrets` to fetch credentials from external services from cloud provider specific Secret Managers.
+In order to install `External Secrets` you can follow the project setup instructions: 
+
+[https://github.com/godaddy/kubernetes-external-secrets](https://github.com/godaddy/kubernetes-external-secrets)
