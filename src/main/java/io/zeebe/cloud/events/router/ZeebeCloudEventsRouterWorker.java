@@ -1,12 +1,12 @@
 package io.zeebe.cloud.events.router;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import io.zeebe.client.api.response.ActivatedJob;
-import io.zeebe.client.api.worker.JobClient;
+import io.camunda.zeebe.client.api.response.ActivatedJob;
+import io.camunda.zeebe.client.api.worker.JobClient;
 import io.zeebe.cloudevents.Headers;
 import io.zeebe.cloudevents.ZeebeCloudEventsHelper;
-import io.zeebe.spring.client.EnableZeebeClient;
-import io.zeebe.spring.client.annotation.ZeebeWorker;
+import io.camunda.zeebe.spring.client.EnableZeebeClient;
+import io.camunda.zeebe.spring.client.annotation.ZeebeWorker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

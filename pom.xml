@@ -19,7 +19,7 @@
 
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <zeebe.version>0.24.0</zeebe.version>
+        <zeebe.version>1.3.0</zeebe.version>
         <springdoc-openapi-ui.version>1.2.32</springdoc-openapi-ui.version>
         <knative-client.version>4.12.0</knative-client.version>
 
@@ -35,7 +35,7 @@
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.zeebe.spring</groupId>
+            <groupId>io.camunda</groupId>
             <artifactId>spring-zeebe-starter</artifactId>
             <version>${zeebe.version}</version>
         </dependency>
