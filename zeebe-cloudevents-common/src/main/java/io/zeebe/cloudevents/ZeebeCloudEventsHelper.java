@@ -36,7 +36,7 @@ public class ZeebeCloudEventsHelper {
         zeebeCloudEventExtension.setCorrelationKey(headers.getFirst(ZeebeCloudEventExtension.CORRELATION_KEY));
         zeebeCloudEventExtension.setBpmnActivityId(headers.getFirst(ZeebeCloudEventExtension.BPMN_ACTIVITY_ID));
         zeebeCloudEventExtension.setBpmnActivityName(headers.getFirst(ZeebeCloudEventExtension.BPMN_ACTIVITY_NAME));
-        zeebeCloudEventExtension.setWorkflowKey(headers.getFirst(ZeebeCloudEventExtension.WORKFLOW_KEY));
+        zeebeCloudEventExtension.setProcessDefinitionKey(headers.getFirst(ZeebeCloudEventExtension.WORKFLOW_KEY));
         zeebeCloudEventExtension.setWorkflowInstanceKey(headers.getFirst(ZeebeCloudEventExtension.WORKFLOW_INSTANCE_KEY));
         zeebeCloudEventExtension.setJobKey(headers.getFirst(ZeebeCloudEventExtension.JOB_KEY));
         return zeebeCloudEventExtension;
@@ -65,7 +65,7 @@ public class ZeebeCloudEventsHelper {
         zeebeCloudEventExtension.setBpmnActivityId(String.valueOf(job.getElementInstanceKey()));
         zeebeCloudEventExtension.setBpmnActivityName(job.getElementId());
         zeebeCloudEventExtension.setJobKey(String.valueOf(job.getKey()));
-        zeebeCloudEventExtension.setWorkflowKey(String.valueOf(job.getProcessDefinitionKey()));
+        zeebeCloudEventExtension.setProcessDefinitionKey(String.valueOf(job.getProcessDefinitionKey()));
         zeebeCloudEventExtension.setWorkflowInstanceKey(String.valueOf(job.getProcessInstanceKey()));
         ObjectMapper objectMapper = new ObjectMapper();
         log.info(">>>>> Job Variables: " + objectMapper.writeValueAsString(job.getVariables()));
