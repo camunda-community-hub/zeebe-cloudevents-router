@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.camunda.community.extension.cloudevents</groupId>
+        <artifactId>zeebe-cloudevents-router</artifactId>        
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    
+    <name>Zeebe Cloud Events (Common)</name>
+    <artifactId>zeebe-cloudevents-common</artifactId>
+    
+    <properties>
+        <spring-boot.version>2.4.3</spring-boot.version>
+		<zeebe.version>1.0.0-rc1</zeebe.version>
+		<cloudevents.version>2.3.0</cloudevents.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+			<version>${spring-boot.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.zeebe.spring</groupId>
+			<artifactId>spring-zeebe-starter</artifactId>
+			<version>${zeebe.version}</version>
+			<scope>provided</scope>
+		</dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+			<version>1.18.22</version>
+        </dependency>
+		<dependency>
+            <groupId>io.cloudevents</groupId>
+            <artifactId>cloudevents-core</artifactId>
+            <version>${cloudevents.version}</version>
+        </dependency>
+	</dependencies>
+
+</project>
