@@ -3,7 +3,7 @@ package io.zeebe.cloudevents;
 import io.cloudevents.CloudEvent;
 
 
-import io.cloudevents.Extension;
+import io.cloudevents.CloudEventExtension;
 import io.cloudevents.core.builder.CloudEventBuilder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -11,8 +11,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.net.URI;
 import java.time.OffsetDateTime;
-import java.time.ZonedDateTime;
-import java.util.Date;
+
 
 public class CloudEventsHelper {
 
@@ -33,7 +32,7 @@ public class CloudEventsHelper {
     }
 
 
-    public static CloudEvent parseFromRequestWithExtension(HttpHeaders headers, Object body, Extension extension){
+    public static CloudEvent parseFromRequestWithExtension(HttpHeaders headers, Object body, CloudEventExtension extension){
         if (headers.get(CE_ID) == null || (headers.get(CE_SOURCE) == null || headers.get(CE_TYPE) == null)) {
             throw new IllegalStateException("Cloud Event required fields are not present.");
         }
@@ -42,7 +41,7 @@ public class CloudEventsHelper {
                 .withId(headers.getFirst(CE_ID))
                 .withType(headers.getFirst(CE_TYPE))
                 .withSource((headers.getFirst(CE_SOURCE) != null) ? URI.create(headers.getFirst(CE_SOURCE)) : null)
-                .withTime((headers.getFirst(CE_TIME) != null) ? ZonedDateTime.parse(headers.getFirst(CE_TIME)) : null)
+                .withTime((headers.getFirst(CE_TIME) != null) ? OffsetDateTime.parse(headers.getFirst(CE_TIME)) : null)
                 .withData(headers.getFirst(CONTENT_TYPE), body.toString().getBytes())
                 .withSubject(headers.getFirst(CE_SUBJECT))
                 .withDataContentType((headers.getFirst(CONTENT_TYPE) != null) ? headers.getFirst(CONTENT_TYPE) : APPLICATION_JSON);
@@ -59,7 +58,7 @@ public class CloudEventsHelper {
 
     public static WebClient.ResponseSpec createPostCloudEvent(WebClient webClient, String uriString, CloudEvent cloudEvent) {
         WebClient.RequestBodySpec uri = webClient.post().uri(uriString);
-        WebClient.RequestHeadersSpec<?> headersSpec = uri.body(BodyInserters.fromValue(new String(cloudEvent.getData())));
+        WebClient.RequestHeadersSpec<?> headersSpec = uri.body(BodyInserters.fromValue(cloudEvent.getData()));
         WebClient.RequestHeadersSpec<?> header = headersSpec
                 .header(CE_ID, cloudEvent.getId())
                 .header(CE_SPECVERSION, cloudEvent.getSpecVersion().toString())
