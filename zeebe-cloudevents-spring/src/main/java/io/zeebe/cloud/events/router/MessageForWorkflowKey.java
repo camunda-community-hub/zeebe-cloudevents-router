@@ -16,11 +16,11 @@ public class MessageForWorkflowKey {
         this.messageName = messageName;
     }
 
-    public String getWorkflowKey() {
+    public String getProcessDefinitionKey() {
         return workflowKey;
     }
 
-    public void setWorkflowKey(String workflowKey) {
+    public void setProcessDefinitionKey(String workflowKey) {
         this.workflowKey = workflowKey;
     }
 

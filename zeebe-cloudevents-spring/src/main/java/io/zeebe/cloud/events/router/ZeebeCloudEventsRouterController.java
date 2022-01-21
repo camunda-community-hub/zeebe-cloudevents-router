@@ -2,7 +2,7 @@ package io.zeebe.cloud.events.router;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.salaboy.cloudevents.helper.CloudEventsHelper;
+import io.zeebe.cloudevents.CloudEventsHelper;
 import io.cloudevents.CloudEvent;
 import io.cloudevents.core.format.EventFormat;
 import io.cloudevents.core.provider.EventFormatProvider;
@@ -47,9 +47,9 @@ public class ZeebeCloudEventsRouterController {
 
     @GetMapping("/status")
     public String getStatus() {
-        log.info("> Broker Contact Point: " + zeebeClient.getConfiguration().getBrokerContactPoint());
+        log.info("> Broker Gateway Address: " + zeebeClient.getConfiguration().getGatewayAddress());
         log.info("> Plain Text Connection Enabled: " + zeebeClient.getConfiguration().isPlaintextConnectionEnabled());
-        return "{ \"zeebe.broker.contactPoint\": " + zeebeClient.getConfiguration().getBrokerContactPoint() + ", " +
+        return "{ \"zeebe.broker.gatewayAddress\": " + zeebeClient.getConfiguration().getGatewayAddress() + ", " +
                 "\"plainTextConnection\":" + zeebeClient.getConfiguration().isPlaintextConnectionEnabled() + "}";
     }
 
@@ -88,7 +88,7 @@ public class ZeebeCloudEventsRouterController {
             if (!pendingJobs.isEmpty()) {
                 if (pendingJobs.contains(jobKey)) {
                     //@TODO: deal with Optionals for Data
-                    jobClient.newCompleteCommand(Long.valueOf(jobKey)).variables(new String(cloudEvent.getData())).send().join();
+                    jobClient.newCompleteCommand(Long.valueOf(jobKey)).variables(cloudEvent.getData()).send().join();
                     mappingsService.removePendingJobFromWorkflow(workflowKey, workflowInstanceKey, jobKey);
                 } else {
                     log.error("Job Key: " + jobKey + " not found");
@@ -150,7 +150,7 @@ public class ZeebeCloudEventsRouterController {
             }
 
 
-            DeploymentEvent deploymentEvent = zeebeClient.newDeployCommand().addWorkflowModel(bpmnModelInstance, dwp.getName()).send().join();
+            DeploymentEvent deploymentEvent = zeebeClient.newDeployCommand().addProcessModel(bpmnModelInstance, dwp.getName()).send().join();
             log.info("Deployment Event: " + deploymentEvent);
 
         }
@@ -199,8 +199,8 @@ public class ZeebeCloudEventsRouterController {
                         .send()
                         .join();
             }
-        } else if (workflowByCloudEvent.getWorkflowKey() != null && !workflowByCloudEvent.getWorkflowKey().equals("")) {
-            zeebeClient.newCreateInstanceCommand().workflowKey(Long.valueOf(workflowByCloudEvent.getWorkflowKey()))
+        } else if (workflowByCloudEvent.getProcessDefinitionKey() != null && !workflowByCloudEvent.getProcessDefinitionKey().equals("")) {
+            zeebeClient.newCreateInstanceCommand().processDefinitionKey(Long.valueOf(workflowByCloudEvent.getProcessDefinitionKey()))
                     .variables(body)
                     .send()
                     .join();
@@ -222,7 +222,7 @@ public class ZeebeCloudEventsRouterController {
     public void addExpectedMessage(@RequestBody MessageForWorkflowKey messageForWorkflowKey) {
         //@TODO: Next step check and advertise which messages are expected by which workflows
         //       This can be scanned on Deploy Workflow, and we can use that to register the workflow as a consumer of events
-        mappingsService.addMessageForWorkflowKey(messageForWorkflowKey.getWorkflowKey(), messageForWorkflowKey.getMessageName());
+        mappingsService.addMessageForWorkflowKey(messageForWorkflowKey.getProcessDefinitionKey(), messageForWorkflowKey.getMessageName());
     }
 
     @PostMapping("/message")
@@ -240,7 +240,7 @@ public class ZeebeCloudEventsRouterController {
         zeebeClient.newPublishMessageCommand()
                 .messageName(cloudEventType)
                 .correlationKey(correlationKey)
-                .variables(new String(cloudEvent.getData()))
+                .variables(cloudEvent.getData().toString())
                 .send().join();
 
         // @TODO: decide on return types

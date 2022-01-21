@@ -39,7 +39,7 @@ public class ZeebeCloudEventsRouterWorker {
             //mappingsService.registerEventConsumer();
             //waitForCloudEventType = job.getCustomHeaders().get(Headers.CLOUD_EVENT_WAIT_TYPE);
 
-            mappingsService.addPendingJob(String.valueOf(job.getWorkflowKey()), String.valueOf(job.getWorkflowInstanceKey()), String.valueOf(job.getKey()));
+            mappingsService.addPendingJob(String.valueOf(job.getProcessDefinitionKey()), String.valueOf(job.getProcessInstanceKey()), String.valueOf(job.getKey()));
             //@TODO: notify the job client that the job was forwarded to an external system. In Node Client this is something like jobCount--;
             //jobClient.newForwardedCommand()..
             ZeebeCloudEventsHelper.emitZeebeCloudEventHTTPFromJob(job, host);
@@ -58,7 +58,7 @@ public class ZeebeCloudEventsRouterWorker {
                 job.getType(),
                 job.getKey(),
                 job.getElementId(),
-                job.getWorkflowInstanceKey(),
+                job.getProcessInstanceKey(),
                 Instant.ofEpochMilli(job.getDeadline()),
                 job.getCustomHeaders(),
                 job.getVariables());
