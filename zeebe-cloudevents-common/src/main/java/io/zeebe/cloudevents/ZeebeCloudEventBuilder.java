@@ -24,7 +24,7 @@ public class ZeebeCloudEventBuilder {
     }
 
     public ZeebeCloudEventBuilder withWorkflowKey(String workflowKey) {
-        zeebeCloudEventExtension.setWorkflowKey(workflowKey);
+        zeebeCloudEventExtension.setProcessDefinitionKey(workflowKey);
         return this;
     }
 
