@@ -10,6 +10,7 @@ import io.cloudevents.jackson.JsonFormat;
 import io.fabric8.knative.client.DefaultKnativeClient;
 import io.fabric8.knative.client.KnativeClient;
 import io.fabric8.knative.eventing.v1.Trigger;
+import io.fabric8.knative.eventing.v1.TriggerBuilder;
 import io.fabric8.knative.eventing.v1.TriggerList;
 import io.camunda.zeebe.client.api.response.DeploymentEvent;
 import io.camunda.zeebe.client.api.worker.JobClient;
@@ -133,7 +134,8 @@ public class ZeebeCloudEventsRouterController {
             Collection<Message> messages = definitions.getModelInstance().getModelElementsByType(Message.class);
             for (Message m : messages) {
                 log.info("Message: " + m.getName());
-                kn.triggers().createOrReplaceWithNew()
+                kn.triggers().createOrReplace(
+                    new TriggerBuilder()
                         .withNewMetadata()
                             .withName("router-" + m.getName().replace(".", "-").toLowerCase())
                         .endMetadata()
@@ -146,7 +148,7 @@ public class ZeebeCloudEventsRouterController {
                             .withUri("http://zeebe-cloud-events-router.default.svc.cluster.local/message")
                         .endSubscriber()
                         .endSpec()
-                        .done();
+                        .build());
             }
 
 
