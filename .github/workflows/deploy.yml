@@ -1,7 +1,7 @@
 name: Deploy artifacts with Maven
 on:
   push:
-    branches: [master]
+    branches: [main]
   release:
     types: [published]
 jobs:
@@ -22,6 +22,10 @@ jobs:
           java-version: 11
           gpg-private-key: ${{ secrets.MAVEN_CENTRAL_GPG_SIGNING_KEY_SEC }}
           gpg-passphrase: MAVEN_CENTRAL_GPG_PASSPHRASE
+      - name: Login to Docker
+        run: |
+          # new login with new container registry url and PAT
+          echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
       - name: Deploy SNAPSHOT / Release
         uses: camunda-community-hub/community-action-maven-release@v1
         with:
@@ -31,7 +35,7 @@ jobs:
           nexus-psw: ${{ secrets.NEXUS_PSW }}
           maven-usr: ${{ secrets.MAVEN_CENTRAL_DEPLOYMENT_USR }}
           maven-psw: ${{ secrets.MAVEN_CENTRAL_DEPLOYMENT_PSW }}
-          maven-url: s01.oss.sonatype.org
+          maven-url: oss.sonatype.org
           maven-gpg-passphrase: ${{ secrets.MAVEN_CENTRAL_GPG_SIGNING_KEY_PASSPHRASE }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           maven-additional-options: -Dfmt.skip -Denforcer.skip
