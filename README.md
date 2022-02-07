@@ -1,9 +1,8 @@
 [![Community Extension](https://img.shields.io/badge/Community%20Extension-An%20open%20source%20community%20maintained%20project-FF4700)](https://github.com/camunda-community-hub/community) [![Lifecycle: Incubating](https://img.shields.io/badge/Lifecycle-Incubating-blue)](https://github.com/Camunda-Community-Hub/community/blob/main/extension-lifecycle.md#incubating-)
 
-# Zeebe Knative / Cloud Events Worker
+# Zeebe Knative / CloudEvents Worker
 
-This project focus in providing a bridge between Zeebe + BPMN to Knative and Cloud Events to provide Cloud Events orchestration using Zeebe Workflows. 
-
+This project focuses on providing a bridge between [Zeebe](http://zeebe.io/) + [BPMN](https://www.bpmn.org/) to [Knative](https://knative.dev/) and [CloudEvents](https://cloudevents.io/) to provide CloudEvents orchestration using Zeebe Workflows. 
 
 # Service Task Properties
 
@@ -16,20 +15,17 @@ Properties
 - WAIT_TYPE: Cloud Event Type to wait 
 
 The worker has two modes:
-- EMIT ONLY: It will emit a Cloud Event and complete the Job
-- WAIT FOR CLOUD EVENT: It will wait to receive Cloud Event with a specific Type which will be correlated by the workflow and job key to complete the Service Task. 
- 
+- EMIT ONLY: It will emit a CloudEvent and complete the Job
+- WAIT FOR CLOUD EVENT: It will wait to receive CloudEvent with a specific Type which will be correlated by the workflow and job key to complete the Service Task. 
 
 # Endpoints
 
-The worker expose HTTP Endpoints to recieve Cloud Events that can be propagated to workflows. 
+The worker exposes HTTP Endpoints to receive CloudEvents that can be propagated to workflows. 
 
-- / POST - > Receive Cloud Event via HTTP that will map to a Job
-- /message POST -> Receive a Cloud Event that will be forwarded as a BPMN Message for an Intermediate Catch Event 
-
+- / POST - > Receive CloudEvent via HTTP that will map to a Job
+- /message POST -> Receive a CloudEvent that will be forwarded as a BPMN Message for an Intermediate Catch Event 
 
 You can always access the Open API UI here: http://localhost:8080/swagger-ui.html
-
 
 # Examples
 
@@ -45,8 +41,7 @@ You can always access the Open API UI here: http://localhost:8080/swagger-ui.htm
 ## EMIT and CONTINUE:
 > zbctl deploy emit-and-continue.bpmn --insecure
 > zbctl create instance EMIT_AND_CONTINUE --variables "{\"myVarId\" : \"123\"}" --insecure
->  curl -X POST localhost:8080/message -H "Content-Type: application/json" -H "Ce-Id: 536808d3" -H "Ce-Type: Cloud Event Response" -H "Ce-Source: curl" -H "CorrelationKey: 123" -d '{"name":"salaboy"}'  -v 
-
+>  curl -X POST localhost:8080/message -H "Content-Type: application/json" -H "Ce-Id: 536808d3" -H "Ce-Type: CloudEvent Response" -H "Ce-Source: curl" -H "CorrelationKey: 123" -d '{"name":"salaboy"}'  -v 
 
 ## TICKETS
 Deploy workflow
