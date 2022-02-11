@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>zeebe-cloudevents-router</artifactId>
-        <groupId>org.camunda.community.extension.cloudevents</groupId>
+        <groupId>org.camunda.community</groupId>
+        <artifactId>zeebe-cloudevents-router</artifactId>        
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.camunda.community.extension.cloudevents</groupId>
+    <groupId>org.camunda.community</groupId>
     <artifactId>zeebe-cloudevents-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
