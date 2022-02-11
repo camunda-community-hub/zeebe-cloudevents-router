@@ -6,12 +6,12 @@
     <parent>
         <groupId>org.camunda.community</groupId>
         <artifactId>zeebe-cloudevents-router</artifactId>                
-        <version>0.0.1-SNAPSHOT</version>
+        <version>v0.1.1</version>
     </parent>
 
     <groupId>org.camunda.community</groupId>
     <artifactId>zeebe-cloudevents-router-spring</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>v0.1.1</version>
     
     <name>Zeebe Cloud Events Router Spring</name>
     <description>Zeebe Cloud Events Router Spring</description>
