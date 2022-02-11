@@ -112,6 +112,32 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <!-- <version>3.0.0-M1</version> -->
             </plugin>
+
+            <!-- containerize java application -->
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <to>
+                        <image>ghcr.io/camunda-community-hub/zeebe-cloudevents-router</image>
+                        <tags>${project.version}</tags>
+                    </to>
+                    <container>
+                        <ports>
+                            <port>8080</port>
+                        </ports>
+                    </container>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
