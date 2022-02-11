@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.camunda.community.extension.cloudevents</groupId>
+  <groupId>org.camunda.community</groupId>
   <artifactId>zeebe-cloudevents-router</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -12,9 +12,9 @@
   <name>Zeebe Cloud Events Router</name>
 
   <scm>
-    <url>https://github.com/camunda-community-hub/zeebe-cloud-events-router</url>
-    <connection>scm:git:git@github.com:camunda-community-hub/zeebe-cloud-events-router.git</connection>
-    <developerConnection>scm:git:git@github.com:camunda-community-hub/zeebe-cloud-events-router.git
+    <url>https://github.com/camunda-community-hub/zeebe-cloudevents-router</url>
+    <connection>scm:git:git@github.com:camunda-community-hub/zeebe-cloudevents-router.git</connection>
+    <developerConnection>scm:git:git@github.com:camunda-community-hub/zeebe-cloudevents-router.git
     </developerConnection>
     <tag>HEAD</tag>
   </scm>
@@ -54,12 +54,12 @@
   <dependencyManagement>
     <dependencies>
      <dependency>
-        <groupId>org.camunda.community.extension.cloudevents</groupId>
+        <groupId>org.camunda.community</groupId>
         <artifactId>zeebe-cloudevents-common</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.camunda.community.extension.cloudevents</groupId>
+        <groupId>org.camunda.community</groupId>
         <artifactId>zeebe-cloudevents-spring</artifactId>
         <version>${project.version}</version>
       </dependency>
