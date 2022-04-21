@@ -36,7 +36,7 @@
     <version.assertj>3.22.0</version.assertj>
 
     <plugin.version.surefire>3.0.0-M5</plugin.version.surefire>
-    <plugin.version.javadoc>3.3.1</plugin.version.javadoc>
+    <plugin.version.javadoc>3.4.0</plugin.version.javadoc>
     <plugin.version.jacoco>0.8.7</plugin.version.jacoco>
     <plugin.version.fmt>2.13</plugin.version.fmt>
 
