@@ -42,7 +42,7 @@
 
     <!-- Project specific -->
     <spring-boot.version>2.6.7</spring-boot.version>
-		<zeebe.version>8.0.4</zeebe.version>
+		<zeebe.version>8.1.1</zeebe.version>
 		<cloudevents.version>2.3.0</cloudevents.version>
   </properties>
 
