@@ -7,13 +7,15 @@
     "enabled": true,
     "automerge": true
   },
-  "workarounds:disableMavenParentRoot": {
-    "enabled": true
-  },
   "packageRules": [
     {
       "automerge": true,
       "matchUpdateTypes": ["major", "minor", "patch", "pin", "pinDigest","digest", "lockFileMaintenance", "rollback", "bump", "replacement"]
+    },
+    {
+      "matchPackagePatterns": ["org.camunda.community:zeebe-cloudevents-router"],
+      "matchCurrentValue": "/-SNAPSHOT$/",
+      "enabled": false
     }
   ]
 }
