@@ -3,5 +3,15 @@
   "extends": [
     "config:recommended",
     "workarounds:disableMavenParentRoot"
+  ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
+  },
+  "packageRules": [
+    {
+      "automerge": true,
+      "matchUpdateTypes": ["major", "minor", "patch", "pin", "pinDigest","digest", "lockFileMaintenance", "rollback", "bump", "replacement"]
+    }
   ]
 }
