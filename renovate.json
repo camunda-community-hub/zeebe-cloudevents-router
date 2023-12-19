@@ -10,11 +10,12 @@
   "packageRules": [
     {
       "automerge": true,
-      "matchUpdateTypes": ["major", "minor", "patch", "pin", "pinDigest","digest", "lockFileMaintenance", "rollback", "bump", "replacement"]
+      "matchUpdateTypes": ["major", "minor", "patch", "pin", "pinDigest","digest", "lockFileMaintenance", "rollback", "bump", "replacement"],
+      "automergeType": "branch",
+      "automergeStrategy": "rebase"
     },
     {
       "matchPackagePatterns": ["org.camunda.community:zeebe-cloudevents-router"],
-      "matchCurrentValue": "/-SNAPSHOT$/",
       "enabled": false
     }
   ]
