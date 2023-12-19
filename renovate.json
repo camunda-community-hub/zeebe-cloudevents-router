@@ -7,7 +7,7 @@
     "enabled": true,
     "automerge": true
   },
-  "disableMavenParentRoot": {
+  "workarounds:disableMavenParentRoot": {
     "enabled": true
   },
   "packageRules": [
