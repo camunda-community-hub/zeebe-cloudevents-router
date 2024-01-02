@@ -2,7 +2,7 @@ name: Build project with Maven
 on:
   pull_request:
   push:
-    branches-ignore: [master]
+    branches-ignore: [main]
   schedule:
   - cron: '2 2 * * 1' # run nightly master builds every monday 
 
@@ -15,7 +15,8 @@ jobs:
     - name: Java setup
       uses: actions/setup-java@v4
       with:
-        java-version: 11
+        distribution: 'temurin'
+        java-version: 11        
     - name: Cache
       uses: actions/cache@v3
       with:
