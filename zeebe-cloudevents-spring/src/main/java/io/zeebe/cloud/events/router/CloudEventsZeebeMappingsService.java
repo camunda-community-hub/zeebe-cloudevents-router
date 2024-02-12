@@ -10,10 +10,10 @@ import java.util.Set;
 //@TODO: refine interface.. to many leaked types here
 @Service
 public class CloudEventsZeebeMappingsService {
-    // WorkflowKey, WorkflowInstanceKey, Jobs
+    // ProcessDefinitionKey, ProcessInstanceKey, Jobs
     private Map<String, Map<String, Set<String>>> workflowsPendingJobs = new HashMap<>();
 
-    private Map<String, Set<String>> messagesByWorkflowKey = new HashMap<>();
+    private Map<String, Set<String>> messagesByProcessDefinitionKey = new HashMap<>();
 
     private Map<String, WorkflowByCloudEvent> startWorkflows = new HashMap<>();
 
@@ -21,25 +21,25 @@ public class CloudEventsZeebeMappingsService {
 
     }
 
-    public void addPendingJob(String workflowKey, String workflowInstanceKey, String jobKey) {
-        if (workflowsPendingJobs.get(workflowKey) == null) {
-            workflowsPendingJobs.put(workflowKey, new HashMap<>());
+    public void addPendingJob(String processDefinitionKey, String processInstanceKey, String jobKey) {
+        if (workflowsPendingJobs.get(processDefinitionKey) == null) {
+            workflowsPendingJobs.put(processDefinitionKey, new HashMap<>());
         }
-        if (!workflowsPendingJobs.get(workflowKey).containsKey(workflowInstanceKey)) {
-            workflowsPendingJobs.get(workflowKey).put(workflowInstanceKey, new HashSet<>());
+        if (!workflowsPendingJobs.get(processDefinitionKey).containsKey(processInstanceKey)) {
+            workflowsPendingJobs.get(processDefinitionKey).put(processInstanceKey, new HashSet<>());
         }
-        workflowsPendingJobs.get(workflowKey).get(workflowInstanceKey).add(jobKey);
+        workflowsPendingJobs.get(processDefinitionKey).get(processInstanceKey).add(jobKey);
     }
 
-    public Map<String, Set<String>> getPendingJobsForWorkflowKey(String workflowKey) {
-        return workflowsPendingJobs.get(workflowKey);
+    public Map<String, Set<String>> getPendingJobsForProcessDefinitionKey(String processDefinitionKey) {
+        return workflowsPendingJobs.get(processDefinitionKey);
     }
 
-    public Map<String, Set<String>> getPendingJobsForWorkflowInstanceKey(String workflowInstanceKey) {
+    public Map<String, Set<String>> getPendingJobsForProcessInstanceKey(String processInstanceKey) {
 
-        for (String workflowKey : workflowsPendingJobs.keySet()) {
-            if (workflowsPendingJobs.get(workflowKey).containsKey(workflowInstanceKey)) {
-                return workflowsPendingJobs.get(workflowInstanceKey);
+        for (String processDefinitionKey : workflowsPendingJobs.keySet()) {
+            if (workflowsPendingJobs.get(processDefinitionKey).containsKey(processInstanceKey)) {
+                return workflowsPendingJobs.get(processInstanceKey);
             }
         }
         return null;
@@ -50,23 +50,23 @@ public class CloudEventsZeebeMappingsService {
     }
 
 
-    public void removePendingJobFromWorkflow(String workflowKey, String workflowInstanceKey, String jobKey) {
-        workflowsPendingJobs.get(workflowKey).get(workflowInstanceKey).remove(jobKey);
+    public void removePendingJobFromWorkflow(String processDefinitionKey, String processInstanceKey, String jobKey) {
+        workflowsPendingJobs.get(processDefinitionKey).get(processInstanceKey).remove(jobKey);
     }
 
-    public void addMessageForWorkflowKey(String workflowKey, String messageName) {
-        if (messagesByWorkflowKey.get(String.valueOf(workflowKey)) == null) {
-            messagesByWorkflowKey.put(String.valueOf(workflowKey), new HashSet<>());
+    public void addMessageForProcessDefinitionKey(String processDefinitionKey, String messageName) {
+        if (messagesByProcessDefinitionKey.get(String.valueOf(processDefinitionKey)) == null) {
+            messagesByProcessDefinitionKey.put(String.valueOf(processDefinitionKey), new HashSet<>());
         }
-        messagesByWorkflowKey.get(workflowKey).add(String.valueOf(messageName));
+        messagesByProcessDefinitionKey.get(processDefinitionKey).add(String.valueOf(messageName));
     }
 
     public Map<String, Set<String>> getAllMessages() {
-        return messagesByWorkflowKey;
+        return messagesByProcessDefinitionKey;
     }
 
-    public Set<String> getMessagesByWorkflowKey(String workflowKey) {
-        return messagesByWorkflowKey.get(workflowKey);
+    public Set<String> getMessagesByProcessDefinitionKey(String processDefinitionKey) {
+        return messagesByProcessDefinitionKey.get(processDefinitionKey);
     }
 
     public void registerStartWorkflowByCloudEvent(WorkflowByCloudEvent wbce) {

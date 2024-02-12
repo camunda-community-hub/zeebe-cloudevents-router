@@ -9,21 +9,16 @@ import java.util.*;
 
 // @TODO: can this live in a library?
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ZeebeCloudEventExtension implements CloudEventExtension {
-    private String correlationKey;
-    private String bpmnActivityName;
-    private String bpmnActivityId;
-    private String workflowKey;
-    private String workflowInstanceKey;
-    private String jobKey;
-
-
-    public static final String CORRELATION_KEY = "Ce-CorrelationKey";
-    public static final String BPMN_ACTIVITY_ID = "Ce-BpmnActivityId";
-    public static final String BPMN_ACTIVITY_NAME = "Ce-BpmnActivityName";
-    public static final String WORKFLOW_KEY = "Ce-WorkflowKey";
-    public static final String WORKFLOW_INSTANCE_KEY = "Ce-WorkflowInstanceKey";
-    public static final String JOB_KEY = "Ce-JobKey";
+public final class ZeebeCloudEventExtension implements CloudEventExtension {
+    /**
+     * The key of the {@code CorrelationKey} extension
+     */
+    public static final String CORRELATION_KEY = "correlationkey";
+    public static final String BPMN_ACTIVITY_ID = "bpmnactivityid";
+    public static final String BPMN_ACTIVITY_NAME = "bpmnactivityname";
+    public static final String PROCESS_DEFINITION_KEY = "processdefinitionkey";
+    public static final String PROCESS_INSTANCE_KEY = "processinstancekey";
+    public static final String JOB_KEY = "jobkey";
 
     private static final Set<String> KEY_SET = Collections
             .unmodifiableSet(
@@ -31,10 +26,16 @@ public class ZeebeCloudEventExtension implements CloudEventExtension {
                         Arrays.asList(CORRELATION_KEY,
                                 BPMN_ACTIVITY_ID,
                                 BPMN_ACTIVITY_NAME,
-                                WORKFLOW_KEY,
-                                WORKFLOW_INSTANCE_KEY,
+                                PROCESS_DEFINITION_KEY,
+                                PROCESS_INSTANCE_KEY,
                                 JOB_KEY )));
 
+    private String correlationKey;
+    private String bpmnActivityName;
+    private String bpmnActivityId;
+    private String processDefinitionKey;
+    private String processInstanceKey;
+    private String jobKey;
 
     public String getCorrelationKey() {
         return correlationKey;
@@ -61,19 +62,19 @@ public class ZeebeCloudEventExtension implements CloudEventExtension {
     }
 
     public String getProcessDefinitionKey() {
-        return workflowKey;
+        return processDefinitionKey;
     }
 
-    public void setProcessDefinitionKey(String workflowKey) {
-        this.workflowKey = workflowKey;
+    public void setProcessDefinitionKey(String processDefinitionKey) {
+        this.processDefinitionKey = processDefinitionKey;
     }
 
-    public String getWorkflowInstanceKey() {
-        return workflowInstanceKey;
+    public String getProcessInstanceKey() {
+        return processInstanceKey;
     }
 
-    public void setWorkflowInstanceKey(String workflowInstanceKey) {
-        this.workflowInstanceKey = workflowInstanceKey;
+    public void setProcessInstanceKey(String processInstanceKey) {
+        this.processInstanceKey = processInstanceKey;
     }
 
     public String getJobKey() {
@@ -97,14 +98,14 @@ public class ZeebeCloudEventExtension implements CloudEventExtension {
         return Objects.equals(correlationKey, that.correlationKey) &&
                 Objects.equals(bpmnActivityName, that.bpmnActivityName) &&
                 Objects.equals(bpmnActivityId, that.bpmnActivityId) &&
-                Objects.equals(workflowKey, that.workflowKey) &&
-                Objects.equals(workflowInstanceKey, that.workflowInstanceKey) &&
+                Objects.equals(processDefinitionKey, that.processDefinitionKey) &&
+                Objects.equals(processInstanceKey, that.processInstanceKey) &&
                 Objects.equals(jobKey, that.jobKey);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(correlationKey, bpmnActivityName, bpmnActivityId, workflowKey, workflowInstanceKey, jobKey);
+        return Objects.hash(correlationKey, bpmnActivityName, bpmnActivityId, processDefinitionKey, processInstanceKey, jobKey);
     }
 
     @Override
@@ -121,13 +122,13 @@ public class ZeebeCloudEventExtension implements CloudEventExtension {
         if (bpmnActivityName != null) {
             this.bpmnActivityName = bpmnActivityName.toString();
         }
-        Object workflowKey = extensions.getExtension(WORKFLOW_KEY);
-        if (workflowKey != null) {
-            this.workflowKey = workflowKey.toString();
+        Object processDefinitionKey = extensions.getExtension(PROCESS_DEFINITION_KEY);
+        if (processDefinitionKey != null) {
+            this.processDefinitionKey = processDefinitionKey.toString();
         }
-        Object workflowInstanceKey = extensions.getExtension(WORKFLOW_INSTANCE_KEY);
-        if (workflowInstanceKey != null) {
-            this.workflowInstanceKey = workflowInstanceKey.toString();
+        Object processInstanceKey = extensions.getExtension(PROCESS_INSTANCE_KEY);
+        if (processInstanceKey != null) {
+            this.processInstanceKey = processInstanceKey.toString();
         }
         Object jobKey = extensions.getExtension(JOB_KEY);
         if (jobKey != null) {
@@ -144,10 +145,10 @@ public class ZeebeCloudEventExtension implements CloudEventExtension {
                 return this.bpmnActivityId;
             case BPMN_ACTIVITY_NAME:
                 return this.bpmnActivityName;
-            case WORKFLOW_KEY:
-                return this.workflowKey;
-            case WORKFLOW_INSTANCE_KEY:
-                return this.workflowInstanceKey;
+            case PROCESS_DEFINITION_KEY:
+                return this.processDefinitionKey;
+            case PROCESS_INSTANCE_KEY:
+                return this.processInstanceKey;
             case JOB_KEY:
                 return this.jobKey;
         }

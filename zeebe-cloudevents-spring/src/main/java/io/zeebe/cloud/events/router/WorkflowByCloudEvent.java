@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class WorkflowByCloudEvent {
     private String cloudEventType;
     private String bpmnProcessId;
-    private String workflowKey;
+    private String processDefinitionKey;
     private String version;
 
     public WorkflowByCloudEvent() {
@@ -49,11 +49,11 @@ public class WorkflowByCloudEvent {
     }
 
     public String getProcessDefinitionKey() {
-        return workflowKey;
+        return processDefinitionKey;
     }
 
-    public void setProcessDefinitionKey(String workflowKey) {
-        this.workflowKey = workflowKey;
+    public void setProcessDefinitionKey(String processDefinitionKey) {
+        this.processDefinitionKey = processDefinitionKey;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class WorkflowByCloudEvent {
         return "WorkflowByCloudEvent{" +
                 "cloudEventType='" + cloudEventType + '\'' +
                 ", bpmnProcessId='" + bpmnProcessId + '\'' +
-                ", workflowKey='" + workflowKey + '\'' +
+                ", processDefinitionKey='" + processDefinitionKey + '\'' +
                 ", version='" + version + '\'' +
                 '}';
     }

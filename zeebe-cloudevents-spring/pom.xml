@@ -6,11 +6,11 @@
     <parent>
         <groupId>org.camunda.community</groupId>
         <artifactId>zeebe-cloudevents-router</artifactId>                
-        <version>v0.1.1</version>
+        <version>v0.1.4</version>
     </parent>
 
     <artifactId>zeebe-cloudevents-router-spring</artifactId>
-    <version>v0.1.1</version>
+    <!-- <version>v0.1.3</version> -->
     
     <name>Zeebe CloudEvents Router Spring</name>
     <description>Zeebe CloudEvents Router Spring</description>
@@ -40,12 +40,21 @@
         <dependency>
             <groupId>org.camunda.community</groupId>
             <artifactId>zeebe-cloudevents-common</artifactId>
-            <!-- <version>0.0.1-SNAPSHOT</version> -->
         </dependency>
         <dependency>
             <groupId>io.cloudevents</groupId>
             <artifactId>cloudevents-json-jackson</artifactId>
             <version>2.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cloudevents</groupId>
+            <artifactId>cloudevents-http-basic</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cloudevents</groupId>
+            <artifactId>cloudevents-spring</artifactId>
+            <version>2.3.0</version>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -120,9 +129,9 @@
                 <version>3.4.0</version>
                 <executions>
                     <execution>
-                        <phase>deploy</phase>
+                        <phase>package</phase>
                         <goals>
-                            <goal>build</goal>
+                            <goal>dockerBuild</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -138,6 +147,23 @@
                     </container>
                 </configuration>
             </plugin>
+            <!-- <plugin>
+                <groupId>com.spotify</groupId>
+                     <artifactId>dockerfile-maven-plugin</artifactId>
+                     <version>1.4.3</version>
+                     <executions>
+                         <execution>
+                             <id>default</id>
+                             <goals>
+                                 <goal>build</goal>
+                             </goals>
+                         </execution>
+                     </executions>
+                     <configuration>
+                     <repository>docker.io/geosiris/zeebe-cloudevents-router</repository>
+                         <tag>${project.version}</tag>
+                     </configuration>
+                </plugin> -->
         </plugins>
     </build>
 </project>

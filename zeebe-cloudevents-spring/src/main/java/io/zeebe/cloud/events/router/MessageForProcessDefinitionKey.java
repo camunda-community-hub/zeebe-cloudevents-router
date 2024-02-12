@@ -1,27 +1,26 @@
 package io.zeebe.cloud.events.router;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MessageForWorkflowKey {
-    private String workflowKey;
+public class MessageForProcessDefinitionKey {
+    private String processDefinitionKey;
     private String messageName;
 
-    public MessageForWorkflowKey() {
+    public MessageForProcessDefinitionKey() {
     }
 
-    public MessageForWorkflowKey(String workflowKey, String messageName) {
-        this.workflowKey = workflowKey;
+    public MessageForProcessDefinitionKey(String processDefinitionKey, String messageName) {
+        this.processDefinitionKey = processDefinitionKey;
         this.messageName = messageName;
     }
 
     public String getProcessDefinitionKey() {
-        return workflowKey;
+        return processDefinitionKey;
     }
 
-    public void setProcessDefinitionKey(String workflowKey) {
-        this.workflowKey = workflowKey;
+    public void setProcessDefinitionKey(String processDefinitionKey) {
+        this.processDefinitionKey = processDefinitionKey;
     }
 
     public String getMessageName() {

@@ -5,11 +5,11 @@
     <parent>
         <groupId>org.camunda.community</groupId>
         <artifactId>zeebe-cloudevents-router</artifactId>        
-        <version>v0.1.1</version>
+        <version>v0.1.4</version>
     </parent>
 
     <artifactId>zeebe-cloudevents-common</artifactId>
-    <version>v0.1.1</version>
+    <!-- <version>v0.1.1</version> -->
 
     <name>Zeebe Cloud Events (Common)</name>
 
@@ -34,6 +34,12 @@
             <artifactId>cloudevents-core</artifactId>
             <version>${cloudevents.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.cloudevents</groupId>
+            <artifactId>cloudevents-json-jackson</artifactId>
+            <version>${cloudevents.version}</version>
+        </dependency>
+        
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

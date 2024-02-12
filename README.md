@@ -35,7 +35,7 @@ You can always access the Open API UI here: http://localhost:8080/swagger-ui.htm
 >
 > zbctl create instance EMIT_WAIT  --insecure
 >
-> curl -X POST localhost:8080/ -H "Content-Type: application/json" -H "Ce-Id: 536808d3" -H "Ce-Type: <WAIT_TYPE>" -H "Ce-Source: curl" -H "Ce-Subject: <WORKFLOW_KEY>:<WORKFLOW_INSTANCE_KEY>:<JOB_KEY>"  -d '{"name":"salaboy"}'  -v
+> curl -X POST localhost:8080/ -H "Content-Type: application/json" -H "Ce-Id: 536808d3" -H "Ce-Type: <WAIT_TYPE>" -H "Ce-Source: curl" -H "Ce-Subject: <WORKFLOW_KEY>:<PROCESS_INSTANCE_KEY>:<JOB_KEY>"  -d '{"name":"salaboy"}'  -v
 >
 
 ## EMIT and CONTINUE:
@@ -48,7 +48,7 @@ Deploy workflow
 > zbctl deploy tickets.bpmn --insecure
 
 Register Tickets.Purchase event to Start Workflow
-> curl -X POST http://localhost:8080/workflows -H "Content-Type: application/json" -d '{"cloudEventType" : "Tickets.Purchase", "workflowKey" : "2251799813690282"}'
+> curl -X POST http://localhost:8080/workflows -H "Content-Type: application/json" -d '{"cloudEventType" : "Tickets.Purchase", "processDefinitionKey" : "2251799813690282"}'
 
 Send Tickets.Purchase to start a workflow
 > curl -X POST http://localhost:8080/workflow -H "Content-Type: application/json" -H "Ce-Id: 536808d33" -H "Ce-Type: Tickets.Purchase" -H "Ce-Source: curl" -d '{"sessionId":"5" }'
