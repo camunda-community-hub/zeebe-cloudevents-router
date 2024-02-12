@@ -35,7 +35,7 @@ import io.camunda.zeebe.model.bpmn.Bpmn;
 import io.camunda.zeebe.model.bpmn.BpmnModelInstance;
 import io.camunda.zeebe.model.bpmn.instance.Definitions;
 import io.camunda.zeebe.model.bpmn.instance.Message;
-import io.camunda.zeebe.spring.client.ZeebeClientLifecycle;
+import io.camunda.zeebe.client.ZeebeClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +67,7 @@ public class ZeebeCloudEventsRouterController {
     private static final Logger log = LoggerFactory.getLogger(ZeebeCloudEventsRouterController.class);
 
     @Autowired
-    private ZeebeClientLifecycle zeebeClient;
+    private ZeebeClient zeebeClient;
 
     @Autowired
     private ObjectMapper objectMapper;
