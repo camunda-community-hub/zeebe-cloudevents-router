@@ -18,7 +18,7 @@
 
     <properties>
         <springdoc-openapi-ui.version>1.8.0</springdoc-openapi-ui.version>
-        <knative-client.version>7.0.1</knative-client.version>
+        <knative-client.version>7.1.0</knative-client.version>
     </properties>
 
     <dependencies>
