@@ -37,7 +37,7 @@
 
     <plugin.version.surefire>3.5.3</plugin.version.surefire>
     <plugin.version.javadoc>3.11.2</plugin.version.javadoc>
-    <plugin.version.jacoco>0.8.12</plugin.version.jacoco>
+    <plugin.version.jacoco>0.8.13</plugin.version.jacoco>
     <plugin.version.fmt>2.13</plugin.version.fmt>
 
     <!-- Project specific -->
