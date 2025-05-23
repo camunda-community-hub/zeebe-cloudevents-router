@@ -41,7 +41,7 @@
     <plugin.version.fmt>2.13</plugin.version.fmt>
 
     <!-- Project specific -->
-    <spring-boot.version>3.4.5</spring-boot.version>
+    <spring-boot.version>3.5.0</spring-boot.version>
 		<zeebe.version>8.5.17</zeebe.version>
 		<cloudevents.version>4.0.1</cloudevents.version>
   </properties>
