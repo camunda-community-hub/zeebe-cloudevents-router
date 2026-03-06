@@ -25,8 +25,8 @@
             <version>${spring-boot.version}</version>            
         </dependency>
         <dependency>
-            <groupId>io.camunda</groupId>
-            <artifactId>spring-zeebe-starter</artifactId>
+            <groupId>io.camunda.spring</groupId>
+            <artifactId>spring-boot-starter-camunda</artifactId>
             <version>${zeebe.version}</version>
         </dependency>
         <dependency>
